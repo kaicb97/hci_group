@@ -1,3 +1,113 @@
-h1 {
-  background-color: #000;
+@import "tables.css";
+@import "chairs.css";
+
+:root{
+  --background-color: cornflowerblue;
+  --standard-font: Verdana, Geneva, Tahoma, sans-serif;
+  --text-size: 20pt;
+  --font-color: darkblue;
+}
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  background-color: var(--background-color);
+  font-family: var(--standard-font);
+}
+
+#sitename {
+  margin: 0;
+  background-color: var(--background-color);
+  color: black;
+  text-align: center;
+  font-size: 46pt;
+  width: 100%;
+  border-bottom: 5px solid black;
+}
+
+#flexcontainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: row;
+  justify-content: stretch;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+#layout {
+  width: 60%;
+  display: flex;
+  flex-flow: column;
+  background-color: var(--background-color);
+}
+
+#layout > h2 {
+  text-align: center;
+  margin-bottom: 0;
+}
+#plan {
+  display:grid;
+  height: 90%;
+  align-self: center;
+  overflow: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: lightblue #FFF;
+  background-color: white;
+  grid-template-rows: repeat(12, 100px);
+  grid-template-columns: repeat(12, 100px);
+}
+
+.cell {
+  border: 2px inset transparent;
+  box-shadow: inset 0px 0px 2px 1px #FFFFFF55;
+  color: white;
+  font-weight: bold;
+  font-size: 16pt;
+}
+
+.cell:hover {
+  text-shadow: #FFF 0px 0px 5px, #FFF 0px 0px 10px, #FFF 0px 0px 15px, #FF2D95 0px 0px 20px, #FF2D95 0px 0px 30px, #FF2D95 0px 0px 40px, #FF2D95 0px 0px 50px, #FF2D95 0px 0px 75px;
+  cursor:pointer;
+  box-shadow: inset 0px 0px 10px 5px #FFFFFFAA;
+}
+
+.Settings {
+  width: 40%;
+  display: flex;
+  flex-flow: column;
+  background-color:var(--background-color);
+}
+
+.SettingForm {
+  margin: 50px;
+  display: flex;
+  flex-flow: column;
+  gap: 50px;
+}
+
+.FormEntry {
+  display: flex;
+  flex-flow: row;
+  background-color: lightgrey;
+}
+
+.FormLabel {
+  font-weight: bold;
+  font-size: var(--text-size);
+  color: var(--font-color);
+}
+p {
+  margin: 0;
 }
