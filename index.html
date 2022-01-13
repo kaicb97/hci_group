@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Webbed Cream!</title>
         <link rel="stylesheet" href="./styles.css">
         <script src="./script.js"></script> 
 
@@ -89,10 +90,46 @@
                         <input id="time" type="datetime-local"/>
                     </div>
                     <div class="FormEntry card card-1 button-container">
-                        <button id="meals">Gericht auswählen</button>
+                        <button id="meals" onclick="return showFood()">Gericht auswählen</button>
                         <button id="save">Speichern</button>
                     </div>
                 </form>
+            </div>
+        </div>
+
+        <div id="food-container" class="popup-container">
+            <div class="popup">
+                <div>
+                    <h1>Gerichte auswählen</h1>
+                    optional:
+                    <div>
+                        <h3> Schnitzel</h3>
+                        <div>
+                            <input id="wiener" type="checkbox"/>
+                            <label>Wiener Schnitzel</label>
+                        </div>
+                        <div>
+                            <input id="rahmen" type="checkbox"/>
+                            <label>Rahmenschnitzel</label> 
+                        </div>
+                    </div>
+                    <div>
+                        <h3> Burger</h3>
+                        <div>
+                            <input id="cheese" type="checkbox"/>
+                            <label>Cheeseburger</label>
+                        </div>
+                    </div>
+                    <div>
+                        <br>
+                        <label for="specialFood">Besonderheiten:</label> 
+                        <input id="specialFood" type="text">
+                    </div>
+                </div >
+                <div class="button-container">
+                    <button id="saveFood" onclick="return showFood()">save</button>
+                </div>
+                
             </div>
         </div>
     </body>

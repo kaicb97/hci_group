@@ -1,5 +1,6 @@
 @import "tables.css";
 @import "chairs.css";
+@import "popup.css";
 
 :root{
   --background-color: cornflowerblue;

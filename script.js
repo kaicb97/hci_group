@@ -16,3 +16,11 @@ function generatePlan(){
         plan.style.gridTemplateAreas = plan.style.gridTemplateAreas+row;
     }
 }
+
+
+
+function showFood(){
+    var foodContainer = document.getElementById("food-container");
+    foodContainer.classList.toggle('show');
+    return false;
+}
