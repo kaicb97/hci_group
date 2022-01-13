@@ -25,6 +25,7 @@ body {
   justify-content: center;
   background-color: var(--background-color);
   font-family: var(--standard-font);
+  user-select: none;
 }
 
 #sitename {
@@ -71,17 +72,27 @@ body {
 }
 
 .cell {
-  border: 2px inset transparent;
   box-shadow: inset 0px 0px 2px 1px #FFFFFF55;
   color: white;
   font-weight: bold;
-  font-size: 16pt;
 }
 
 .cell:hover {
   text-shadow: #FFF 0px 0px 5px, #FFF 0px 0px 10px, #FFF 0px 0px 15px, #FF2D95 0px 0px 20px, #FF2D95 0px 0px 30px, #FF2D95 0px 0px 40px, #FF2D95 0px 0px 50px, #FF2D95 0px 0px 75px;
   cursor:pointer;
-  box-shadow: inset 0px 0px 10px 5px #FFFFFFAA;
+  box-shadow: inset 0px 0px 10px 5px #FFFA;
+}
+
+.cell_selected {
+	text-shadow: #FFA 0px 0px 5px, #FF7 0px 0px 10px, #FF5 0px 0px 15px, #F20 0px 0px 20px, #F20 0px 0px 30px, #F20 0px 0px 40px, #F20 0px 0px 50px, #F20 0px 0px 75px;
+	color: #FF0;
+	box-shadow: inset 0px 0px 10px 5px #FF0A;
+  font-weight: bold;
+}
+
+.cell_selected:hover {
+  cursor:pointer;
+  box-shadow: inset 0px 0px 10px 5px #FFFA;
 }
 
 .Settings {
