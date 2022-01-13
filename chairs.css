@@ -4,6 +4,7 @@
     background-position: center;
     background-size: 100% 100%;
     color: white;
+    font-size: 16pt;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -12,33 +13,33 @@
     z-index: 1;
 }
 
-#C11 {grid-area: Z0101;}
-#C12 {grid-area: Z0104;}
-#C13 {grid-area: Z0201;}
-#C14 {grid-area: Z0204;}
-#C21 {grid-area: Z0301;}
-#C22 {grid-area: Z0304;}
-#C23 {grid-area: Z0401;}
-#C24 {grid-area: Z0404;}
-#C31 {grid-area: Z0601;}
-#C32 {grid-area: Z0604;}
-#C33 {grid-area: Z0701;}
-#C34 {grid-area: Z0704;}
-#C41 {grid-area: Z0901;}
-#C42 {grid-area: Z0904;}
-#C51 {grid-area: Z0107;}
-#C52 {grid-area: Z0110;}
-#C53 {grid-area: Z0207;}
-#C54 {grid-area: Z0210;}
-#C61 {grid-area: Z0307;}
-#C62 {grid-area: Z0310;}
-#C63 {grid-area: Z0407;}
-#C64 {grid-area: Z0410;}
-#C71 {grid-area: Z0607;}
-#C72 {grid-area: Z0610;}
-#C73 {grid-area: Z0707;}
-#C74 {grid-area: Z0710;}
-#C81 {grid-area: Z0806;}
-#C82 {grid-area: Z0807;}
-#C91 {grid-area: Z0808;}
-#C92 {grid-area: Z0809;}
+#C01_01 {grid-area: Z01_01;}
+#C01_02 {grid-area: Z01_04;}
+#C01_03 {grid-area: Z02_01;}
+#C01_04 {grid-area: Z02_04;}
+#C02_01 {grid-area: Z03_01;}
+#C02_02 {grid-area: Z03_04;}
+#C02_03 {grid-area: Z04_01;}
+#C02_04 {grid-area: Z04_04;}
+#C03_01 {grid-area: Z06_01;}
+#C03_02 {grid-area: Z06_04;}
+#C03_03 {grid-area: Z07_01;}
+#C03_04 {grid-area: Z07_04;}
+#C04_01 {grid-area: Z09_01;}
+#C04_02 {grid-area: Z09_04;}
+#C05_01 {grid-area: Z01_07;}
+#C05_02 {grid-area: Z01_10;}
+#C05_03 {grid-area: Z02_07;}
+#C05_04 {grid-area: Z02_10;}
+#C06_01 {grid-area: Z03_07;}
+#C06_02 {grid-area: Z03_10;}
+#C06_03 {grid-area: Z04_07;}
+#C06_04 {grid-area: Z04_10;}
+#C07_01 {grid-area: Z06_07;}
+#C07_02 {grid-area: Z06_10;}
+#C07_03 {grid-area: Z07_07;}
+#C07_04 {grid-area: Z07_10;}
+#C08_01 {grid-area: Z08_06;}
+#C08_02 {grid-area: Z08_07;}
+#C09_01 {grid-area: Z08_08;}
+#C09_02 {grid-area: Z08_09;}
