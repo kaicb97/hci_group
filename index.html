@@ -3,6 +3,10 @@
     <head>
         <link rel="stylesheet" href="./styles.css">
         <script src="./script.js"></script> 
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,900&display=swap" rel="stylesheet">
     </head>
 
     <body onload="generatePlan()">
@@ -54,35 +58,40 @@
             </div>
             <div class="Settings">
                 <form class="SettingForm">
-                    <div class="FormEntry">
+                    <div class="FormEntry card card-1">
                         <label class="FormLabel">Anzahl Stühle: </label>
                         <input id="chairs" type="text"/>
                     </div>
-                    <div class="FormEntry">
+                    <div class="FormEntry card card-1">
                         <label class="FormLabel">Tischnummern: </label>
-                        <input id="cb1" type="checkbox"/>
-                        <input id="cb2" type="checkbox"/>
-                        <input id="cb3" type="checkbox"/>
-                        <input id="cb4" type="checkbox"/>
-                        <input id="cb5" type="checkbox"/>
-                        <input id="cb6" type="checkbox"/>
-                        <input id="cb7" type="checkbox"/>
-                        <input id="cb8" type="checkbox"/>
-                        <input id="cb9" type="checkbox"/>
-                        <input id="cb10" type="checkbox"/>
+                        <div class="checkboxes">
+                            <input id="cb1" type="checkbox"/>
+                            <input id="cb2" type="checkbox"/>
+                            <input id="cb3" type="checkbox"/>
+                            <input id="cb4" type="checkbox"/>
+                            <input id="cb5" type="checkbox"/>
+                            <input id="cb6" type="checkbox"/>
+                            <input id="cb7" type="checkbox"/>
+                            <input id="cb8" type="checkbox"/>
+                            <input id="cb9" type="checkbox"/>
+                            <input id="cb10" type="checkbox"/>
+                        </div>
                     </div>
-                    <div class="FormEntry">
+                    <div class="FormEntry card card-1">
                         <label class="FormLabel">Besonderheiten:</label>
-                        <button onClick="">Rollstuhl</button>
-                        <button onClick="">Babystuhl</button>
+                        <div class="button-container">
+                            <button onClick="">Rollstuhl</button>
+                            <button onClick="">Babystuhl</button>
+                        </div>
                     </div>
-                    <div class="FormEntry">
+                    <div class="FormEntry card card-1">
                         <label class="FormLabel">Zeit:</label>
-                        <input id="time" type="text"/>
-                        <label class="FormLabel">Uhr</label>
+                        <input id="time" type="datetime-local"/>
                     </div>
-                    <button id="meals">Gericht auswählen</button>
-                    <button id="save">Speichern</button>
+                    <div class="FormEntry card card-1 button-container">
+                        <button id="meals">Gericht auswählen</button>
+                        <button id="save">Speichern</button>
+                    </div>
                 </form>
             </div>
         </div>
