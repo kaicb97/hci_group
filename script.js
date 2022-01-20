@@ -1,5 +1,24 @@
 // menu selector
-var menu = undefined;
+var menu = [
+        {
+            "id": 0,
+            "name": "Schnitzel",
+            "img": "https://images.unsplash.com/photo-1599921841143-819065a55cc6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1631&q=80",
+            "price": 6.99
+        },
+        {
+            "id": 1,
+            "name": "Burger",
+            "img": "http://www.gourmetburger.ch/wp-content/uploads/2018/02/gourmetburger_gallery13.jpg",
+            "price": 10.99
+        },
+        {
+            "id": 2,
+            "name": "Burger Vegan",
+            "img": "https://www.zauberdergewuerze.de/magazin/wp-content/uploads/2021/02/burger_istock-1248306530.jpg",
+            "price": 17.99
+        }
+];
 var currentMenu = 0;
 var choosenFood = {}
 
@@ -117,14 +136,8 @@ function collapseSettings(){
 function showFood(){
     console.log("show food");
 
-    fetch("./menu.json")
-    .then(response => { return response.json(); })
-    .then(data => {
-        console.log(data);
-        menu = data.menu;
-        console.log(data);
-        displayMenuData();
-    })
+    displayMenuData();
+    
     return false;
 }
 
