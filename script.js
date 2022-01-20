@@ -1,6 +1,7 @@
 // menu selector
 var menu = undefined;
 var currentMenu = 0;
+var choosenFood = {}
 
 
 //TableID: Number Chairs
@@ -98,7 +99,6 @@ function generatePlan(){
         plan.style.gridTemplateAreas = plan.style.gridTemplateAreas+row;
     }
 
-    showFood()
 }
 
 function collapseSettings(){
@@ -115,15 +115,17 @@ function collapseSettings(){
 }
 
 function showFood(){
-    if (!menu) {
-        fetch("./menu.json")
-        .then(response => { return response.json(); })
-        .then(data => {
-            menu = data.menu;
-            console.log(data);
-            displayMenuData();
-        })
-    }
+    console.log("show food");
+
+    fetch("./menu.json")
+    .then(response => { return response.json(); })
+    .then(data => {
+        console.log(data);
+        menu = data.menu;
+        console.log(data);
+        displayMenuData();
+    })
+    return false;
 }
 
 function displayMenuData() {
@@ -147,42 +149,34 @@ function choose(button){
 var foodprice = 0; 
 
 function calcFoodPrice(){
-	var id = "quantity";
-	foodprice = 0;
-	for(var i = 1; i<4;i++){
-		var numberOfFood = parseInt(document.getElementById(id+i).value, 10);
-		if(isNaN(numberOfFood)){
-			return false;
-		}
-		if (i<3) {
-			foodprice += (6.69 * numberOfFood);
-		}else{
-			foodprice += (4.20 * numberOfFood);
-		}
-	}
-	foodprice = Math.round(foodprice * 100)/100 + "€";
-	document.getElementById("food-price-overall").innerHTML = "Gesammt: " + foodprice;
+    var foodprice = 0
+
+    for (var key in choosenFood) {
+        foodprice += choosenFood[key] * menu[key].price;
+    }
+
+    foodprice = Math.round(foodprice * 100)/100 + "€";
+	
+    if(foodprice === "0€")
+        document.getElementById("food-buy").innerHTML = "Vorort bestellen!"
+    else 
+        document.getElementById("food-buy").innerHTML = "Bestellen!"
+
+    document.getElementById("food-price-overall").innerHTML = "Gesamt: " + foodprice;
 }
 
-function incrementFood(id){
-	var numberOfFood = parseInt(document.getElementById(id).value, 10);
-	if(isNaN(numberOfFood) || numberOfFood > 98){
-		return false;
-	}
-	numberOfFood ++;
-	document.getElementById(id).value = numberOfFood;
-	calcFoodPrice();
-	return false;
-}
+function incrementFood(count) {
+	console.log(choosenFood)
 
-function decrementFood(id){
-	var numberOfFood = parseInt(document.getElementById(id).value, 10);
-	if(isNaN(numberOfFood) || numberOfFood == 0){
-		return false;
-	}
-	numberOfFood --;
-	document.getElementById(id).value = numberOfFood;
-	calcFoodPrice();
+    if(currentMenu in choosenFood) {
+        if(choosenFood[currentMenu] !== 0 || count === 1)
+            choosenFood[currentMenu] += count;
+    } else {
+        if(count === 1)
+            choosenFood[currentMenu] = count;
+    }
+
+    calcFoodPrice();
 	return false;
 }
 

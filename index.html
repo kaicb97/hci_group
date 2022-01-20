@@ -65,7 +65,7 @@
 
         <div id="food-container" class="popup-container">
             <div class="popup">
-                <img id="popup-img" class="background-img" src="img.jpeg" alt="Food Image">
+                <img id="popup-img" class="background-img" alt="Food Image">
                     
                 <div class="arrow left-center">
                     <img class="icon" src="ress/navigate_left.png" onclick="relativeMenu(-1)" alt="Left">
@@ -80,13 +80,13 @@
                 <div id="food-name" class="top-centered food-headline">Essen</div>
 
                 <div id="food-price" class="bottom-right text">10 Euro</div>
-                <div id="food-price-overall" class="top-right text">Gesamt: 0Euro</div>
+                <div id="food-price-overall" class="top-right text">Gesamt: 0€</div>
 
                 
                 <div class="buttons bottom-centered">
-                    <button id="food-sub">-</button>
-                    <button id="food-local">Vorort bestellen</button>
-                    <button id="food-add">+</button>
+                    <button id="food-sub" onclick="incrementFood(-1)">-</button>
+                    <button id="food-buy">Vorort bestellen</button>
+                    <button id="food-add" onclick="incrementFood(1)">+</button>
                 </div>
             </div>
         </div>

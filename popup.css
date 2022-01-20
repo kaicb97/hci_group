@@ -14,7 +14,7 @@
 }
 
 .popup{
-    background-color: lightgrey;
+    background: transparent;
     box-shadow: 5pt;
 
     position: relative;
@@ -39,16 +39,15 @@
 
 .bottom-centered {
     position: absolute;
-    bottom: 8px;
+    bottom: 16px;
     left: 50%;
-    transform: translate(-50%, -100%);
+    transform: translate(-50%, 0%);
 }
 
 .bottom-right {
     position: absolute;
     bottom: 8px;
     right: 8px;
-    transform: translate(0%, -50%);
 }
 
 .background-img {
@@ -86,5 +85,10 @@
 }
 
 .arrow {
+    cursor: pointer;
     background-color: white;
+}
+
+#food-buy {
+    width: 100px;
 }
