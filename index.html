@@ -14,8 +14,11 @@
         <h1 id="sitename">Webbed Cream!</h1>
         <div id="flexcontainer">
             <div id="layout">
-                <h2>Tischreservierung:</h2>
-                <div id="plan">
+                <div id="nextrooms">
+                    <div id="room1" class="room"></div>
+                    <div id="room2" class="room"></div>
+                </div>
+                <div id="room3" class="room">
                 </div>
             </div>
             <div id="Settings">
@@ -27,24 +30,16 @@
                     </div>
                     <div class="FormEntry card card-1">
                         <label class="FormLabel">Tischnummern: </label>
-                        <div class="checkboxes">
-                            <input id="cb1" type="checkbox"/>
-                            <input id="cb2" type="checkbox"/>
-                            <input id="cb3" type="checkbox"/>
-                            <input id="cb4" type="checkbox"/>
-                            <input id="cb5" type="checkbox"/>
-                            <input id="cb6" type="checkbox"/>
-                            <input id="cb7" type="checkbox"/>
-                            <input id="cb8" type="checkbox"/>
-                            <input id="cb9" type="checkbox"/>
-                            <input id="cb10" type="checkbox"/>
-                        </div>
+                        <input id="tableText" type="text"/>
+                        <button class="myButton" id="addTable" onclick="addTisch()" type="button">add</button>
+                        <ul id="selected_tables">
+                        </ul>
                     </div>
                     <div class="FormEntry card card-1">
                         <label class="FormLabel">Besonderheiten:</label>
                         <div class="button-container">
-                            <button onClick="return choose(this)">Rollstuhl</button>
-                            <button onClick="return choose(this)">Babystuhl</button>
+                            <button class="myButton" onClick="choose(this)" type="button">Rollstuhl</button>
+                            <button class="myButton" onClick="choose(this)" type="button">Babystuhl</button>
                         </div>
                     </div>
                     <div class="FormEntry card card-1">
@@ -53,11 +48,11 @@
                     </div>
                     <div class="FormEntry card card-1 button-container">
                         <div>
-                            <button id="meals" onclick="return showFood()">Gericht auswählen</button>
+                            <button class="myButton" id="meals" onclick="showFood()" type="button">Gericht auswählen</button>
                             <label>Preis: </label>
                             <input id="FoodPrice2" type="text" readonly class="numberInput full">
                         </div>
-                        <button id="save">Speichern</button>
+                        <button class="myButton" id="save">Speichern</button>
                     </div>
                 </form>
             </div>

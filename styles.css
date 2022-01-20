@@ -1,5 +1,3 @@
-@import "tables.css";
-@import "chairs.css";
 @import "popup.css";
 
 :root{
@@ -22,7 +20,8 @@ body {
   width: 100%;
   display: flex;
   flex-flow: column;
-  background-color: var(--background-color);
+  background-image: url(ress/back.jpg);
+  background-repeat: repeat;
   font-family: var(--standard-font);
   user-select: none;
 }
@@ -45,28 +44,73 @@ body {
 
 #layout {
   height: 100%;
-  width: 60%;
+  width: 100%;
   display: flex;
   flex-flow: column;
   background-color: transparent;
-}
-
-#layout > h2 {
-  text-align: center;
-  margin-bottom: 0;
-}
-
-#plan {
-  display:grid;
-  height: 100%;
-  width: 100%;
-  align-self: center;
   scrollbar-width: thin;
   scrollbar-color: lightblue #FFF;
+}
+
+#nextrooms {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+}
+
+.room {
+  border: 2px solid gray;
+}
+
+#room1 {
+  display:grid;
   background-color: white;
-  grid-template-rows: repeat(12, 50px);
-  grid-template-columns: repeat(12, 50px);
+  grid-template-rows: repeat(12, 2.5vw);
+  grid-template-columns: repeat(12, 2.5vw);
   background-color: var(--background-color);
+}
+
+#room2 {
+  display:grid;
+  background-color: white;
+  grid-template-rows: repeat(12, 2.5vw);
+  grid-template-columns: repeat(16, 2.5vw);
+  background-color: var(--background-color);
+}
+
+#room3 {
+  display:grid;
+  align-self: center;
+  background-color: white;
+  grid-template-rows: repeat(7, 2.5vw);
+  grid-template-columns: repeat(28, 2.5vw);
+  background-color: var(--background-color);
+}
+
+.plan_element {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  color: white;
+  font-size: 16pt;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  z-index: 1;
+}
+
+.chair_round {
+  background-image: url(ress/chair.png);
+}
+
+.chair_square {
+  background-image: url(ress/chair_wood.png);
+}
+
+.table {
+  background-image: url(ress/table.png);
 }
 
 .cell {
@@ -94,11 +138,13 @@ body {
 }
 
 #Settings {
+  padding-top: 10px;
   margin-left:auto;
   width: 20%;
   display: flex;
   flex-flow: column;
-  background-color: #8ebfe2;
+  background-image: url(ress/smooth.jpg);
+  background-repeat: repeat;
   transition: width 1s;
   z-index: 2;
   -webkit-box-shadow: inset 3px 3px 8px 3px rgba(255,255,255,0.5); 
@@ -113,7 +159,8 @@ body {
 .FormEntry {
   display: flex;
   padding: 1rem;
-  flex-flow: column;
+  gap: 20px;
+  flex-flow: row;
   background-color: white;
 }
 
@@ -166,8 +213,31 @@ p {
 #collapse {
   width: 50px;
   height: 50px;
-  background-color: rgba(0, 0, 0, 0.2);
   text-align: center;
   cursor: pointer;
   transition: transform 0.5s;
+}
+
+.myButton {
+	box-shadow: 3px 4px 0px 0px #899599;
+	background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+	background-color:#ededed;
+	border-radius:15px;
+	border:1px solid #d6bcd6;
+	display:inline-block;
+	cursor:pointer;
+	color:#3a8a9e;
+	font-family:Arial;
+	font-size:17px;
+	padding:7px 20px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #e1e2ed;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+	background-color:#bab1ba;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
 }
