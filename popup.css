@@ -1,4 +1,4 @@
-.popup-container{
+.popup-container{ 
     z-index: 5;
     display: flex;
     background-color: rgba(0,0,0,0.3);
@@ -16,10 +16,75 @@
 .popup{
     background-color: lightgrey;
     box-shadow: 5pt;
-    padding: 20pt;
+
+    position: relative;
 }
 
 .popup-container.show{
     pointer-events: auto;
     opacity: 1;
+}
+
+#popup-img {
+    width: 80vw;
+    height: 80vh;
+}
+
+.top-centered {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+.bottom-centered {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translate(-50%, -100%);
+}
+
+.bottom-right {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    transform: translate(0%, -50%);
+}
+
+.background-img {
+    filter: brightness(50%);
+}
+
+.top-right {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+
+.food-headline {
+    font-size: 48px;
+    font-weight: 900;
+    color: white;
+}
+
+.text {
+    font-size: 40px;
+    font-weight: 700;
+    color: white;
+}
+
+.right-center {
+    position: absolute;
+    right: 0px;
+    top: 45%;
+}
+
+.left-center {
+    position: absolute;
+    left: 0px;
+    top: 45%;
+}
+
+.arrow {
+    background-color: white;
 }
