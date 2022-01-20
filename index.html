@@ -4,7 +4,6 @@
         <title>Webbed Cream!</title>
         <link rel="stylesheet" href="./styles.css">
         <script src="./script.js"></script> 
-
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,900&display=swap" rel="stylesheet">
@@ -23,7 +22,7 @@
             </div>
             <div id="Settings">
                 <img id="collapse" src="ress/right-arrow.png" onclick="collapseSettings()"/>
-                <form id="SettingForm">
+                <form id="SettingForm" method="POST" action="userData/userInput.html">
                     <div class="FormEntry card card-1">
                         <label class="FormLabel">Anzahl Stühle: </label>
                         <input id="chairs" type="number"/>
@@ -52,7 +51,7 @@
                             <label>Preis: </label>
                             <input id="FoodPrice2" type="text" readonly class="numberInput full">
                         </div>
-                        <button class="myButton" id="save">Speichern</button>
+                        <button class="myButton" id="save" onclick="sendData()">Speichern</button>
                     </div>
                 </form>
             </div>
@@ -80,7 +79,7 @@
                 
                 <div class="buttons bottom-centered">
                     <button class="myButton" id="food-sub" onclick="incrementFood(-1)">-</button>
-                    <button class="myButton" id="food-buy">Vorort bestellen</button>
+                    <button class="myButton" id="food-buy" type=button onClick="hideMenu()">Vorort bestellen</button>
                     <button class="myButton" id="food-add" onclick="incrementFood(1)">+</button>
                 </div>
             </div>
