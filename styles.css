@@ -11,18 +11,17 @@
 html {
   margin: 0;
   padding: 0;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
 }
 
 body {
   margin: 0;
   padding: 0;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-flow: column;
-  justify-content: center;
   background-color: var(--background-color);
   font-family: var(--standard-font);
   user-select: none;
@@ -30,12 +29,11 @@ body {
 
 #sitename {
   margin: 0;
-  background-color: var(--background-color);
-  color: black;
+  background-color: black;
+  color: rgb(231, 231, 255);
   text-align: center;
-  font-size: 46pt;
+  font-size: 32pt;
   width: 100%;
-  border-bottom: 5px solid black;
 }
 
 #flexcontainer {
@@ -43,32 +41,32 @@ body {
   height: 100%;
   display: flex;
   flex-flow: row;
-  justify-content: stretch;
-  align-items: stretch;
-  align-content: stretch;
 }
 
 #layout {
+  height: 100%;
   width: 60%;
   display: flex;
   flex-flow: column;
-  background-color: var(--background-color);
+  background-color: transparent;
 }
 
 #layout > h2 {
   text-align: center;
   margin-bottom: 0;
 }
+
 #plan {
   display:grid;
-  height: 90%;
+  height: 100%;
+  width: 100%;
   align-self: center;
-  overflow: scroll;
   scrollbar-width: thin;
   scrollbar-color: lightblue #FFF;
   background-color: white;
-  grid-template-rows: repeat(12, 100px);
-  grid-template-columns: repeat(12, 100px);
+  grid-template-rows: repeat(12, 50px);
+  grid-template-columns: repeat(12, 50px);
+  background-color: var(--background-color);
 }
 
 .cell {
@@ -95,14 +93,19 @@ body {
   box-shadow: inset 0px 0px 10px 5px #FFFA;
 }
 
-.Settings {
-  width: 40%;
+#Settings {
+  margin-left:auto;
+  width: 20%;
   display: flex;
   flex-flow: column;
-  background-color: #E3F2FD;
+  background-color: #8ebfe2;
+  transition: width 1s;
+  z-index: 2;
+  -webkit-box-shadow: inset 3px 3px 8px 3px rgba(255,255,255,0.5); 
+  box-shadow: inset 3px 3px 8px 3px rgba(255,255,255,0.5);
 }
 
-.SettingForm {
+#SettingForm {
   display: flex;
   flex-flow: column;
 }
@@ -149,23 +152,6 @@ p {
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
-.card-2 {
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-}
-
-.card-3 {
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-}
-
-.card-4 {
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-}
-
-.card-5 {
-  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
-}
-
-
 .numberInput {
   width: 15pt;
   background-color: transparent;
@@ -175,4 +161,13 @@ p {
 
 .numberInput.full {
   width: 30pt;
+}
+
+#collapse {
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.2);
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.5s;
 }

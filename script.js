@@ -24,8 +24,6 @@ function decrementChairs(){
 	document.getElementById("chairs").value = number_of_seats;
 }
 
-
-
 function selectObject(){
 	var ObjectID = event.target.getAttribute("id");
 	if(event.target.classList.contains('cell')){
@@ -85,7 +83,7 @@ function generatePlan(){
         for (let y = 1; y <= 12; y++) {
             row = row+' Z'+String(x).padStart(2, '0')+"_"+String(y).padStart(2, '0');
             var newCell = document.createElement("div");
-            newCell.style.background = "url(floor.png)"
+            newCell.style.background = "url(ress/floor.png)"
             newCell.style.gridArea = "Z"+String(x).padStart(2, '0')+"_"+String(y).padStart(2, '0');
             newCell.classList.add('cell');
             newCell.setAttribute("id", "Z"+String(x).padStart(2, '0')+"_"+String(y).padStart(2, '0'));
@@ -96,7 +94,18 @@ function generatePlan(){
     }
 }
 
+function collapseSettings(){
+	if(document.getElementById("Settings").style.width != "50px"){
+		document.getElementById("Settings").style.width = "50px";
+		document.getElementById("collapse").style.transform = "rotate(180deg)";
+		document.getElementById("SettingForm").style.display = "none";
 
+	} else {
+		document.getElementById("Settings").style.width = "20%";
+		document.getElementById("collapse").style.transform = "none";
+		document.getElementById("SettingForm").style.display = "flex";
+	}	
+}
 
 function showFood(){
     var foodContainer = document.getElementById("food-container");
