@@ -60,62 +60,29 @@
 
         <div id="food-container" class="popup-container">
             <div class="popup">
-                <div>
-                    <h1>Gerichte auswählen</h1>
-                    <button onclick="return showFood()">Ich entscheide mich im Vorort</button>
-                    <div>
-                        <h3> Schnitzel</h3>
-                        <div class="button-container">
-                            <div>
-                                <button id="addWiener" onclick='return incrementFood("quantity1")'>+</button>
-                                <button id="subWiener" onclick='return decrementFood("quantity1")'>-</button>
-                                <label>Wienerschnitzel</label>
-                            </div>
-                            <div>
-                                <input class="numberInput" type="text" id="quantity1" name="quantity" max="99" min="0" readonly value="0"> 
-                                <label>x 6,69€</label>
-                            </div>
-                        </div>
-                        <div class="button-container">
-                            <div>
-                                <button id="addRahmen" onclick='return incrementFood("quantity2")' >+</button>
-                                <button id="subRahmen" onclick='return decrementFood("quantity2")'>-</button>
-                                <label>Rahmenschnitzel</label>
-                            </div>
-                            <div>
-                                <input class="numberInput" type="text" id="quantity2" name="quantity" max="99" min="0" readonly value="0"> 
-                                <label>x 6,69€</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <h3> Burger</h3>
-                        <div class="button-container">
-                            <div>
-                                <button id="addBurger" onclick='return incrementFood("quantity3")' >+</button>
-                                <button id="subBurger" onclick='return decrementFood("quantity3")'>-</button>
-                                <label>Cheeseburger</label>
-                            </div>
-                            <div>
-                                <input class="numberInput" type="text" id="quantity3" name="quantity" max="99" min="0" readonly value="0"> 
-                                <label>x 4,20€</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <br>
-                        <label for="specialFood">Besonderheiten:</label> 
-                        <input id="specialFood" type="text">
-                    </div>
-                    <div>
-                        <label for="specialFood">Gesamtpreis für das Essen:</label> 
-                        <input id="FoodPrice" type="text" readonly class="numberInput full">
-                    </div>
-                </div >
-                <div class="button-container">
-                    <button id="saveFood" onclick="return showFood()">save</button>
+                <img id="popup-img" class="background-img" alt="Food Image">
+                    
+                <div class="arrow left-center">
+                    <img class="icon" src="ress/navigate_left.png" onclick="relativeMenu(-1)" alt="Left">
                 </div>
                 
+                <div class="arrow right-center" onclick="relativeMenu(+1)">
+                    <img class="icon" src="ress/navigate_right.png" alt="Right">
+                </div>
+
+
+
+                <div id="food-name" class="top-centered food-headline">Essen</div>
+
+                <div id="food-price" class="bottom-right text">10 Euro</div>
+                <div id="food-price-overall" class="top-right text">Gesamt: 0€</div>
+
+                
+                <div class="buttons bottom-centered">
+                    <button id="food-sub" onclick="incrementFood(-1)">-</button>
+                    <button id="food-buy">Vorort bestellen</button>
+                    <button id="food-add" onclick="incrementFood(1)">+</button>
+                </div>
             </div>
         </div>
         <div class="impressum" hidden>

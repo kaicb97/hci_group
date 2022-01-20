@@ -35,6 +35,30 @@ var room_tables = [
 room.push(room_tables);
 rooms.push(room);
 
+// menu selector
+var menu = [
+        {
+            "id": 0,
+            "name": "Schnitzel",
+            "img": "https://images.unsplash.com/photo-1599921841143-819065a55cc6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1631&q=80",
+            "price": 6.99
+        },
+        {
+            "id": 1,
+            "name": "Burger",
+            "img": "http://www.gourmetburger.ch/wp-content/uploads/2018/02/gourmetburger_gallery13.jpg",
+            "price": 10.99
+        },
+        {
+            "id": 2,
+            "name": "Burger Vegan",
+            "img": "https://www.zauberdergewuerze.de/magazin/wp-content/uploads/2021/02/burger_istock-1248306530.jpg",
+            "price": 17.99
+        }
+];
+var currentMenu = 0;
+var choosenFood = {}
+
 var selected_tables = [];
 var selected_chairs = [];
 var number_of_seats = 0;
@@ -122,7 +146,7 @@ function generatePlan(){
 			plan.style.gridTemplateAreas = plan.style.gridTemplateAreas+row;
 		}
 
-		//Generate Table and Chair layout
+    //Generate Table and Chair layout
 		room[3].forEach(table => {
 			var tableElement = document.createElement("div");
 			var tableId = "T"+String(tableIds).padStart(2, '0');
@@ -175,9 +199,24 @@ function collapseSettings(){
 }
 
 function showFood(){
-    var foodContainer = document.getElementById("food-container");
-    foodContainer.classList.toggle('show');
+    console.log("show food");
+
+    displayMenuData();
+    
     return false;
+}
+
+function displayMenuData() {
+    var foodContainer = document.getElementById("food-container");
+    var img = document.getElementById("popup-img");
+    var title = document.getElementById("food-name");
+    var prod_price = document.getElementById("food-price");
+
+    title.innerHTML = menu[currentMenu].name;
+    img.src = menu[currentMenu].img;
+    prod_price.innerHTML = menu[currentMenu].price;
+
+    foodContainer.classList.add("show");
 }
 
 function choose(button){
@@ -188,43 +227,44 @@ function choose(button){
 var foodprice = 0; 
 
 function calcFoodPrice(){
+    var foodprice = 0
+
+    for (var key in choosenFood) {
+        foodprice += choosenFood[key] * menu[key].price;
+    }
+
+    foodprice = Math.round(foodprice * 100)/100 + "€";
 	
-	var id = "quantity";
-	foodprice = 0;
-	for(var i = 1; i<4;i++){
-		var numberOfFood = parseInt(document.getElementById(id+i).value, 10);
-		if(isNaN(numberOfFood)){
-			return false;
-		}
-		if (i<3) {
-			foodprice += (6.69 * numberOfFood);
-		}else{
-			foodprice += (4.20 * numberOfFood);
-		}
-	}
-	foodprice = Math.round(foodprice * 100)/100 + "€";
-	document.getElementById("FoodPrice").value = foodprice;
-	document.getElementById("FoodPrice2").value = foodprice;
+    if(foodprice === "0€")
+        document.getElementById("food-buy").innerHTML = "Vorort bestellen!"
+    else 
+        document.getElementById("food-buy").innerHTML = "Bestellen!"
+
+    document.getElementById("food-price-overall").innerHTML = "Gesamt: " + foodprice;
 }
 
-function incrementFood(id){
-	var numberOfFood = parseInt(document.getElementById(id).value, 10);
-	if(isNaN(numberOfFood) || numberOfFood > 98){
-		return false;
-	}
-	numberOfFood ++;
-	document.getElementById(id).value = numberOfFood;
-	calcFoodPrice();
+function incrementFood(count) {
+	console.log(choosenFood)
+
+    if(currentMenu in choosenFood) {
+        if(choosenFood[currentMenu] !== 0 || count === 1)
+            choosenFood[currentMenu] += count;
+    } else {
+        if(count === 1)
+            choosenFood[currentMenu] = count;
+    }
+
+    calcFoodPrice();
 	return false;
 }
 
-function decrementFood(id){
-	var numberOfFood = parseInt(document.getElementById(id).value, 10);
-	if(isNaN(numberOfFood) || numberOfFood == 0){
-		return false;
-	}
-	numberOfFood --;
-	document.getElementById(id).value = numberOfFood;
-	calcFoodPrice();
-	return false;
+function relativeMenu(id) {
+    if(currentMenu == 0 && id < 0) return;
+    if(currentMenu == menu.length - 1 && id > 0) return;
+
+    currentMenu += id;
+
+    console.log(currentMenu);
+
+    displayMenuData();
 }
