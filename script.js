@@ -25,6 +25,7 @@ function decrementChairs(){
 }
 
 
+
 function selectObject(){
 	var ObjectID = event.target.getAttribute("id");
 	if(event.target.classList.contains('cell')){
@@ -106,4 +107,47 @@ function showFood(){
 function choose(button){
     button.classList.toggle("buttonShow");
     return false;
+}
+
+var foodprice = 0; 
+
+function calcFoodPrice(){
+	
+	var id = "quantity";
+	foodprice = 0;
+	for(var i = 1; i<4;i++){
+		var numberOfFood = parseInt(document.getElementById(id+i).value, 10);
+		if(isNaN(numberOfFood)){
+			return false;
+		}
+		if (i<3) {
+			foodprice += (6.69 * numberOfFood);
+		}else{
+			foodprice += (4.20 * numberOfFood);
+		}
+	}
+	foodprice = Math.round(foodprice * 100)/100 + "€";
+	document.getElementById("FoodPrice").value = foodprice;
+	document.getElementById("FoodPrice2").value = foodprice;
+}
+
+function incrementFood(id){
+	var numberOfFood = parseInt(document.getElementById(id).value, 10);
+	if(isNaN(numberOfFood) || numberOfFood > 98){
+		return false;
+	}
+	numberOfFood ++;
+	document.getElementById(id).value = numberOfFood;
+	calcFoodPrice();
+	return false;
+}
+
+function decrementFood(id){
+	var numberOfFood = parseInt(document.getElementById(id).value, 10);
+	if(isNaN(numberOfFood) || numberOfFood == 0){
+		return false;
+	}
+	numberOfFood --;
+	document.getElementById(id).value = numberOfFood;
+	return false;
 }

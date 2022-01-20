@@ -51,7 +51,11 @@
                         <input id="time" type="datetime-local"/>
                     </div>
                     <div class="FormEntry card card-1 button-container">
-                        <button id="meals" onclick="return showFood()">Gericht auswählen</button>
+                        <div>
+                            <button id="meals" onclick="return showFood()">Gericht auswählen</button>
+                            <label>Preis: </label>
+                            <input id="FoodPrice2" type="text" readonly class="numberInput full">
+                        </div>
                         <button id="save">Speichern</button>
                     </div>
                 </form>
@@ -62,32 +66,54 @@
             <div class="popup">
                 <div>
                     <h1>Gerichte auswählen</h1>
-                    optional:
+                    <button onclick="return showFood()">Ich entscheide mich im Vorort</button>
                     <div>
                         <h3> Schnitzel</h3>
-                        <div>
-                            <input id="wiener" type="checkbox"/>
-                            <label>Wiener Schnitzel</label>
-                            <input type="number" id="quantity" name="quantity">
+                        <div class="button-container">
+                            <div>
+                                <button id="addWiener" onclick='return incrementFood("quantity1")'>+</button>
+                                <button id="subWiener" onclick='return decrementFood("quantity1")'>-</button>
+                                <label>Wienerschnitzel</label>
+                            </div>
+                            <div>
+                                <input class="numberInput" type="text" id="quantity1" name="quantity" max="99" min="0" readonly value="0"> 
+                                <label>x 6,69€</label>
+                            </div>
                         </div>
-                        <div>
-                            <input id="rahmen" type="checkbox"/>
-                            <label>Rahmenschnitzel</label>
-                            <input type="number" id="quantity" name="quantity"> 
+                        <div class="button-container">
+                            <div>
+                                <button id="addRahmen" onclick='return incrementFood("quantity2")' >+</button>
+                                <button id="subRahmen" onclick='return decrementFood("quantity2")'>-</button>
+                                <label>Rahmenschnitzel</label>
+                            </div>
+                            <div>
+                                <input class="numberInput" type="text" id="quantity2" name="quantity" max="99" min="0" readonly value="0"> 
+                                <label>x 6,69€</label>
+                            </div>
                         </div>
                     </div>
                     <div>
                         <h3> Burger</h3>
-                        <div>
-                            <input id="cheese" type="checkbox"/>
-                            <label>Cheeseburger</label>
-                            <input type="number" id="quantity" name="quantity">
+                        <div class="button-container">
+                            <div>
+                                <button id="addBurger" onclick='return incrementFood("quantity3")' >+</button>
+                                <button id="subBurger" onclick='return decrementFood("quantity3")'>-</button>
+                                <label>Cheeseburger</label>
+                            </div>
+                            <div>
+                                <input class="numberInput" type="text" id="quantity3" name="quantity" max="99" min="0" readonly value="0"> 
+                                <label>x 4,20€</label>
+                            </div>
                         </div>
                     </div>
                     <div>
                         <br>
                         <label for="specialFood">Besonderheiten:</label> 
                         <input id="specialFood" type="text">
+                    </div>
+                    <div>
+                        <label for="specialFood">Gesamtpreis für das Essen:</label> 
+                        <input id="FoodPrice" type="text" readonly class="numberInput full">
                     </div>
                 </div >
                 <div class="button-container">
