@@ -141,7 +141,7 @@ body {
 #Settings {
   padding: 10px;
   margin-left:auto;
-  width: 20vw;
+  width: 25vw;
   display: flex;
   flex-flow: column;
   background-image: url(ress/smooth.jpg);
@@ -178,7 +178,7 @@ body {
 .button-container {
     display: flex;
     flex-flow: row;
-    justify-content: space-between;
+    gap: 20px;
 }
 
 #selected_tables {
@@ -249,6 +249,10 @@ p {
   text-align: center;
   cursor: pointer;
   transition: transform 0.5s;
+}
+
+#save {
+  width: 95%;
 }
 
 .myButton {

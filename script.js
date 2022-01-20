@@ -239,7 +239,7 @@ function collapseSettings(){
 		document.getElementById("SettingForm").style.display = "none";
 
 	} else {
-		document.getElementById("Settings").style.width = "20vw";
+		document.getElementById("Settings").style.width = "25vw";
 		document.getElementById("collapse").style.transform = "none";
 		document.getElementById("SettingForm").style.display = "flex";
 	}	

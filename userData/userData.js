@@ -5,7 +5,7 @@ var table = `
     <table>
     <tr>
         <td>
-            <label for="FirstName">First</label>, <label for="LastName">Last Name*:</label>
+            <label for="FirstName">First Name</label>, <label for="LastName">Last Name*:</label>
         </td>
         <td>
             <input name="FirstName" id="FirstName" type="text" maxlength="60" style="max-width:146px;width:100%">
