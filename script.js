@@ -59,6 +59,7 @@ var menu = [
 var currentMenu = 0;
 var choosenFood = {}
 
+var selected_table_ids = [];
 var selected_tables = [];
 var selected_chairs = [];
 var number_of_seats = 0;
@@ -84,41 +85,87 @@ function decrementChairs(){
 	document.getElementById("chairs").value = number_of_seats;
 }
 
-function addTisch() {
-	alert("test");
-	var Table = document.createElement("li");
-	Table.innerHTML = document.getElementById("tableText").value;
-	
-	document.getElementById("selected_tables").appendChild(Table);
-	document.getElementById("tableText").value = "";
+function addTableList(){
+	var input = document.getElementById("tableText");
+	var val = input.value.padStart(2, "0");
+	if(!selected_tables.includes(val) && parseInt(val) < 55 && parseInt(val) >= 0){
+		selected_tables.push(val);
+		addTisch(val);
+		selectObject("T"+val);
+	} else if (val == ""){
+		alert("Please enter a table number.");
+	} else if (selected_tables.includes(val)) {
+		alert("Table already added!");
+	} else {
+		alert("Invalid table number!");
+	}
 }
 
-function selectObject(){
-	var ObjectID = event.target.getAttribute("id");
-	if(event.target.classList.contains('cell')){
-		event.target.classList.add('cell_selected');
-		event.target.classList.remove('cell');
-		if(ObjectID.includes("C")){
-			incrementChairs();
-			selected_chairs.push(ObjectID);
-		} else if(ObjectID.includes("T")) {
-			selected_tables.push(ObjectID);
-		}
+function addTisch(value) {
+	var list = document.getElementById("selected_tables");
+	var tableEntry = document.createElement("div");
+	tableEntry.setAttribute("id", "LIT"+String(value).padStart(2, "0"));
+
+	var Img = document.createElement("img");
+	Img.src = "ress/side-table.png";
+	Img.style.height = "32px";
+	Img.style.width = "32px";
+	tableEntry.appendChild(Img);
+
+	var Table = document.createElement("div");
+	Table.style.width = "50%";
+	Table.innerHTML = value;
+	Table.classList.add("tableListElement");
+	tableEntry.appendChild(Table);
+
+	var Delete = document.createElement("img");
+	Delete.src = "ress/close.png";
+	Delete.style.width = "32px";
+	Delete.style.height = "32px";
+	Delete.style.cursor = "pointer";
+	Delete.style.justifySelf = "flex-end"
+	Delete.setAttribute("id", "DLIT"+value);
+	Delete.setAttribute("onclick", "deleteEntry('LIT"+value+"')");
+	tableEntry.appendChild(Delete);
+	list.appendChild(tableEntry);
+}
+
+function deleteEntry(id){
+	deleteTable(id);
+	var tableNumber = id.substring(3);
+	selectObject("T"+String(tableNumber).padStart(2, "0"));
+}
+
+function deleteTable(id){
+	document.getElementById(id).remove();
+	var tableNumber = id.substring(3);
+	selected_tables.pop(tableNumber);
+}
+
+function select(id){
+	if(document.getElementById(id).classList.contains('cell')){
+		addTisch(parseInt(id.substring(1)));
 	} else {
-		event.target.classList.add('cell');
-		event.target.classList.remove('cell_selected');
-		if(ObjectID.includes("C")){
-			if(selected_chairs.includes(ObjectID)){
-				decrementChairs();
-				selected_chairs.pop(ObjectID);
-			}
-		} else if(ObjectID.includes("T")) {
-			if(selected_tables.includes(ObjectID)){
-				selected_tables.pop(ObjectID);
-			}
+		deleteTable("LIT"+id.substring(1));
+	}
+	selectObject(id);
+}
+
+function selectObject(id){
+	var object = document.getElementById(id);
+	if(object.classList.contains('cell') && id.includes("T")){
+		object.classList.add('cell_selected');
+		object.classList.remove('cell');
+		if(!selected_table_ids.includes(id)){
+			selected_table_ids.push(id);
+		}
+	} else if (id.includes("T")) {
+		object.classList.add('cell');
+		object.classList.remove('cell_selected');
+		if(selected_table_ids.includes(id)){
+			selected_table_ids.pop(id);
 		}
 	}
-	logPlanState();
 }
 
 function generatePlan(){
@@ -153,7 +200,7 @@ function generatePlan(){
 			var tableId = "T"+String(tableIds).padStart(2, '0');
 			tableElement.setAttribute("id", tableId);
 			tableElement.setAttribute("class", "cell plan_element table");
-			tableElement.setAttribute("onclick", "selectObject()");
+			tableElement.setAttribute("onclick", "select('"+tableId+"')");
 			tableElement.style.gridArea = "Z"+String(table[0]).padStart(2, '0')+"_"+String(table[1]).padStart(2, '0');
 			tableElement.innerHTML = String(tableIds++).padStart(2, '0');
 			plan.appendChild(tableElement);
@@ -163,7 +210,6 @@ function generatePlan(){
 				var chairElement = document.createElement("div");
 				chairElement.setAttribute("id", chairId);
 				chairElement.setAttribute("class", "cell plan_element chair_square");
-				chairElement.setAttribute("onclick", "selectObject()");
 				if(table[2] == "v"){
 					if(index == 1){
 						chairElement.style.gridArea = "Z"+String(table[0]-1).padStart(2, '0')+"_"+String(table[1]).padStart(2, '0');
@@ -193,7 +239,7 @@ function collapseSettings(){
 		document.getElementById("SettingForm").style.display = "none";
 
 	} else {
-		document.getElementById("Settings").style.width = "20%";
+		document.getElementById("Settings").style.width = "20vw";
 		document.getElementById("collapse").style.transform = "none";
 		document.getElementById("SettingForm").style.display = "flex";
 	}	
