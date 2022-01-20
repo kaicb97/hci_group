@@ -63,6 +63,7 @@ var selected_tables = [];
 var selected_chairs = [];
 var number_of_seats = 0;
 
+
 function logPlanState(){
 	console.log("Chairs: "+String(selected_chairs.length)+", Tables: "+String(selected_tables.length));
 	if(selected_chairs.length > 0){
@@ -219,6 +220,12 @@ function displayMenuData() {
     foodContainer.classList.add("show");
 }
 
+function hideMenu(){
+	var foodContainer = document.getElementById("food-container");
+	document.getElementById("FoodPrice2").value = foodprice;
+	foodContainer.classList.toggle("show");
+}
+
 function choose(button){
     button.classList.toggle("buttonShow");
     return false;
@@ -227,7 +234,7 @@ function choose(button){
 var foodprice = 0; 
 
 function calcFoodPrice(){
-    var foodprice = 0
+    foodprice = 0
 
     for (var key in choosenFood) {
         foodprice += choosenFood[key] * menu[key].price;
@@ -267,4 +274,8 @@ function relativeMenu(id) {
     console.log(currentMenu);
 
     displayMenuData();
+}
+
+function sendData() {
+	localStorage.setItem("price",foodprice);
 }
