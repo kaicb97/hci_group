@@ -31,9 +31,9 @@
                     <div class="FormEntry card card-1">
                         <label class="FormLabel">Tischnummern: </label>
                         <input id="tableText" type="text"/>
-                        <button class="myButton" id="addTable" onclick="addTisch()" type="button">add</button>
-                        <ul id="selected_tables">
-                        </ul>
+                        <button class="myButton" id="addTable" onclick="addTableList()" type="button">add</button>
+                        <div id="selected_tables">
+                        </div>
                     </div>
                     <div class="FormEntry card card-1">
                         <label class="FormLabel">Besonderheiten:</label>
@@ -79,9 +79,9 @@
 
                 
                 <div class="buttons bottom-centered">
-                    <button id="food-sub" onclick="incrementFood(-1)">-</button>
-                    <button id="food-buy">Vorort bestellen</button>
-                    <button id="food-add" onclick="incrementFood(1)">+</button>
+                    <button class="myButton" id="food-sub" onclick="incrementFood(-1)">-</button>
+                    <button class="myButton" id="food-buy">Vorort bestellen</button>
+                    <button class="myButton" id="food-add" onclick="incrementFood(1)">+</button>
                 </div>
             </div>
         </div>
