@@ -149,5 +149,6 @@ function decrementFood(id){
 	}
 	numberOfFood --;
 	document.getElementById(id).value = numberOfFood;
+	calcFoodPrice();
 	return false;
 }
