@@ -22,7 +22,7 @@
                 <form class="SettingForm">
                     <div class="FormEntry card card-1">
                         <label class="FormLabel">Anzahl Stühle: </label>
-                        <input id="chairs" type="text"/>
+                        <input id="chairs" type="number"/>
                     </div>
                     <div class="FormEntry card card-1">
                         <label class="FormLabel">Tischnummern: </label>
@@ -42,8 +42,8 @@
                     <div class="FormEntry card card-1">
                         <label class="FormLabel">Besonderheiten:</label>
                         <div class="button-container">
-                            <button onClick="">Rollstuhl</button>
-                            <button onClick="">Babystuhl</button>
+                            <button onClick="return choose(this)">Rollstuhl</button>
+                            <button onClick="return choose(this)">Babystuhl</button>
                         </div>
                     </div>
                     <div class="FormEntry card card-1">
@@ -68,10 +68,12 @@
                         <div>
                             <input id="wiener" type="checkbox"/>
                             <label>Wiener Schnitzel</label>
+                            <input type="number" id="quantity" name="quantity">
                         </div>
                         <div>
                             <input id="rahmen" type="checkbox"/>
-                            <label>Rahmenschnitzel</label> 
+                            <label>Rahmenschnitzel</label>
+                            <input type="number" id="quantity" name="quantity"> 
                         </div>
                     </div>
                     <div>
@@ -79,6 +81,7 @@
                         <div>
                             <input id="cheese" type="checkbox"/>
                             <label>Cheeseburger</label>
+                            <input type="number" id="quantity" name="quantity">
                         </div>
                     </div>
                     <div>

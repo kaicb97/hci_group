@@ -2,6 +2,7 @@
 var tables = {1: 4, 2: 4, 3: 4, 4: 2, 5: 4, 6: 4, 7: 4, 8: 2, 9: 2};
 var selected_tables = [];
 var selected_chairs = [];
+var number_of_seats = 0;
 
 function logPlanState(){
 	console.log("Chairs: "+String(selected_chairs.length)+", Tables: "+String(selected_tables.length));
@@ -13,12 +14,24 @@ function logPlanState(){
 	}
 }
 
+function incrementChairs(){
+	number_of_seats +=1;
+	document.getElementById("chairs").value = number_of_seats;
+}
+
+function decrementChairs(){
+	number_of_seats -=1;
+	document.getElementById("chairs").value = number_of_seats;
+}
+
+
 function selectObject(){
 	var ObjectID = event.target.getAttribute("id");
 	if(event.target.classList.contains('cell')){
 		event.target.classList.add('cell_selected');
 		event.target.classList.remove('cell');
 		if(ObjectID.includes("C")){
+			incrementChairs();
 			selected_chairs.push(ObjectID);
 		} else if(ObjectID.includes("T")) {
 			selected_tables.push(ObjectID);
@@ -28,6 +41,7 @@ function selectObject(){
 		event.target.classList.remove('cell_selected');
 		if(ObjectID.includes("C")){
 			if(selected_chairs.includes(ObjectID)){
+				decrementChairs();
 				selected_chairs.pop(ObjectID);
 			}
 		} else if(ObjectID.includes("T")) {
@@ -86,5 +100,10 @@ function generatePlan(){
 function showFood(){
     var foodContainer = document.getElementById("food-container");
     foodContainer.classList.toggle('show');
+    return false;
+}
+
+function choose(button){
+    button.classList.toggle("buttonShow");
     return false;
 }
