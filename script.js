@@ -154,6 +154,11 @@ function displayMenuData() {
     foodContainer.classList.add("show");
 }
 
+function toggle_popup() {
+    var foodContainer = document.getElementById("food-container");
+    foodContainer.classList.toggle('show');
+}
+
 function choose(button){
     button.classList.toggle("buttonShow");
     return false;

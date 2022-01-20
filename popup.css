@@ -78,6 +78,12 @@
     top: 45%;
 }
 
+.top-left {
+    position: absolute;
+    left: 8px;
+    top: 8px;
+}
+
 .left-center {
     position: absolute;
     left: 0px;
