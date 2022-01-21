@@ -1,31 +1,82 @@
 .sideBox {
     display: flex;
-    width: 15%;
+    width: 20%;
     height: 150%;
     justify-content: center;
     align-items: center;
 }
 
 .middleBlock {
+    padding: 10pt;
+    padding-top: 40pt;
     display: flex;
-    width: 70%;
+    width: 60%;
     justify-content: center;
     height: 100%;
 }
 
 .formBG {
+    display: flex;
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    min-width: 500px;
+    margin-top: 20pt;
+    margin:auto;
+    padding: 10pt;
     background-image: url(../ress/smooth.jpg);
     background-repeat: repeat;
     -webkit-box-shadow: inset 3px 3px 8px 3px rgba(255,255,255,0.5); 
     box-shadow: inset 3px 3px 8px 3px rgba(255,255,255,0.5);
 }
 
+.row-container {
+    display: flex;
+    flex-wrap:nowrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.label-container {
+    display: flex;
+    width: 40%;
+    padding: 5pt;
+}
+
+.input-container {
+    padding: 3px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    width: 60%;
+    justify-content: stretch;
+}
+
 .mainContainer {
     display: flex;
     flex-direction: row;
+    flex-wrap: nowrap;
 }
 
 .submit {
     display: flex;
     justify-content: center;
+}
+
+.myButton.noTouch {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.button-centered {
+    display: flex;
+    justify-content: center;    
 }
