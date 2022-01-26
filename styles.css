@@ -5,7 +5,7 @@
   --background-color: cornflowerblue;
   --standard-font: Verdana, Geneva, Tahoma, sans-serif;
   --text-size: 20pt;
-  --font-color: darkblue;
+  --color1: rgb(27, 17, 82);
 }
 html {
   margin: 0;
@@ -89,7 +89,7 @@ body {
   font-family: 'Roboto', sans-serif;
   font-weight: 900;
   font-size: var(--text-size);
-  color: var(--font-color);
+  color: var(--color1);
 }
 
 .FEInner {
