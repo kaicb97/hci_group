@@ -60,6 +60,12 @@
     right: 8px;
 }
 
+.top-left {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+}
+
 .food-headline {
     font-size: 48px;
     font-weight: 900;

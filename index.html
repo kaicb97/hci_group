@@ -41,8 +41,15 @@
                     <div class="FormEntry card card-1">
                         <label class="FormLabel">Besonderheiten:</label>
                         <div class="button-container">
-                            <button class="myButton" onClick="choose(this)" type="button">Rollstuhl</button>
-                            <button class="myButton" onClick="choose(this)" type="button">Babystuhl</button>
+                            <button class="myButton" onClick="chooseWheelChair(this)" type="button">Rollstuhl</button>
+                            <div class="icon-container" id="wheel">
+                                <img src="./ress/wheel-chair.png" alt='Wheelchair Art' class="icon">
+                            </div>
+                            
+                            <button class="myButton" onClick="chooseHighChair(this)" type="button">Babystuhl</button>
+                            <div class="icon-container" id="high-chair">
+                                <img src="./ress/baby-chair.png" alt='high-chair Art' class="icon">
+                            </div>
                         </div>
                     </div>
                     <div class="FormEntry card card-1">
@@ -52,11 +59,23 @@
                     <div class="FormEntry card card-1 button-container">
                         <div>
                             <button class="myButton" id="meals" onclick="showFood()" type="button">Gericht auswählen</button>
-                            <label>Gesamtpreis: </label>
-                            <input id="FoodPrice2" type="text" readonly class="numberInput full">
+                            <label id="FoodPrice2">Gesamtpreis: 0€</label>
                         </div>
                     </div>
-                    <button class="myButton" id="save" onclick="sendData()">Speichern</button>
+                    <div class="FormEntry card card-1">
+                        <div>
+                            <button id="foodListShowButton" type="button" class="myButton small" onclick="showFoodList(this)">+</button>
+                            <label id="foodListButton">Essens Auswahl anzeigen</label>
+                        </div>
+                        <div>
+                            <label id="food-list"></label>
+                        </div>
+                        
+                    </div>
+                    <div>
+                        <button class="myButton" id="save" onclick="sendData()">Weiter</button>
+                    </div>
+
                 </form>
             </div>
         </div>
@@ -64,6 +83,9 @@
         <div id="food-container" class="popup-container">
             <div class="popup">
                 <img id="popup-img" class="background-img" alt="Food Image">
+                <div class="top-left">
+                    <button class="myButton" type=button onClick="hideMenu()">Exit</button>
+                </div>
                     
                 <div class="arrow left-center">
                     <img class="icon" src="ress/navigate_left.png" onclick="relativeMenu(-1)" alt="Left">

@@ -75,6 +75,8 @@ var selected_table_ids = [];
 var selected_tables = [];
 var selected_chairs = [];
 var number_of_seats = 0;
+var wheelchair = false;
+var babychair = false;
 
 function initiateWebsite(){
 	generatePlan();
@@ -321,7 +323,7 @@ function displayMenuData() {
 
 function hideMenu(){
 	var foodContainer = document.getElementById("food-container");
-	document.getElementById("FoodPrice2").value = foodprice;
+	document.getElementById("FoodPrice2").innerHTML = "Gesamtpreis: " + foodprice + "€";
 	foodContainer.classList.toggle("show");
 }
 
@@ -330,11 +332,20 @@ function choose(button){
     return false;
 }
 
+function chooseWheelChair(button){
+	document.getElementById("wheel").classList.toggle("show");
+	button.classList.toggle("clicked");
+}
+
+function chooseHighChair(button){
+	document.getElementById("high-chair").classList.toggle("show");
+	button.classList.toggle("clicked");
+}
+
 var foodprice = 0; 
 
 function calcFoodPrice(){
     foodprice = 0
-
     for (var key in choosenFood) {
         foodprice += choosenFood[key] * menu[key].price;
     }
@@ -347,6 +358,10 @@ function calcFoodPrice(){
         document.getElementById("food-buy").innerHTML = "Bestellen!"
 
     document.getElementById("food-price-overall").innerHTML = "Gesamt: " + foodprice;
+
+	if (document.getElementById("foodListShowButton").innerHTML == "-") {
+		getFoodList();
+	}
 }
 
 function incrementFood(count) {
@@ -361,6 +376,7 @@ function incrementFood(count) {
     }
 
     calcFoodPrice();
+	console.log(currentMenu);
 	return false;
 }
 
@@ -377,5 +393,32 @@ function relativeMenu(id) {
 
 function sendData() {
 	localStorage.setItem("price",foodprice);
+}
+
+
+function getFoodList(){
+	var text = "";
+    for (var key in choosenFood) {
+		var currentFoodPrice = choosenFood[key] * menu[key].price;
+		text += choosenFood[key] + "x " + menu[key].name + ": " + (currentFoodPrice*100)/100 + "€" + "<br>";
+    }
+	document.getElementById("food-list").innerHTML = text;
+}
+
+function showFoodList(button){
+	if(button.innerHTML == "+"){
+		button.innerHTML = "-";
+		button.style.padding = "1px 10px";
+		document.getElementById("foodListButton").innerHTML = "Essens Auswahl verbergen";
+		getFoodList();
+	}else{
+		button.innerHTML = "+";
+		button.style.padding = "1px 7px";
+		document.getElementById("foodListButton").innerHTML = "Essens Auswahl anzeigen";
+		document.getElementById("food-list").innerHTML = "";
+	}
+
+	
+
 }
 
