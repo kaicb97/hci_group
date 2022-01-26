@@ -9,7 +9,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,900&display=swap" rel="stylesheet">
     </head>
 
-    <body onload="generatePlan()">
+    <body onload="initiateWebsite()">
         <h1 id="sitename">Webbed Cream!</h1>
         <div id="flexcontainer">
             <div id="layout">
@@ -23,16 +23,20 @@
             <div id="Settings">
                 <img id="collapse" src="ress/right-arrow.png" onclick="collapseSettings()"/>
                 <form id="SettingForm" method="POST" action="userData/userInput.html">
-                    <div class="FormEntry card card-1">
-                        <label class="FormLabel">Anzahl Stühle: </label>
-                        <input id="chairs" type="number"/>
-                    </div>
-                    <div class="FormEntry card card-1">
-                        <label class="FormLabel">Tischnummern: </label>
-                        <input id="tableText" type="text"/>
-                        <button class="myButton" id="addTable" onclick="addTableList()" type="button">add</button>
+                    <div class="FormEntry2 card card-1">
+                        <div class="FEInner">
+                            <label class="FormLabel">Tischnummern: </label>
+                            <input id="tableText" type="text"/>
+                            <button class="myButton" id="addTable" onclick="addTableList()" type="button">add</button>
+                        </div>
                         <div id="selected_tables">
                         </div>
+                        <hr class="solid">
+                        <div class="FEInner">
+                            <label class="FormLabel">Anzahl Sitzplätze: </label>
+                            <p id="seats"></p>
+                        </div>
+                        
                     </div>
                     <div class="FormEntry card card-1">
                         <label class="FormLabel">Besonderheiten:</label>
