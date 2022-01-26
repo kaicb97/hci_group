@@ -1,0 +1,142 @@
+#layout {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  background-color: transparent;
+  scrollbar-width: thin;
+  scrollbar-color: lightblue #FFF;
+}
+
+#nextrooms {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+}
+
+.room {
+  border: 2px solid gray;
+}
+
+#room1 {
+  display:grid;
+  background-image: url(ress/floor.png);
+  background-repeat: repeat;
+  background-size: 64px 64px;
+  grid-template-rows: repeat(12, 2.5vw);
+  grid-template-columns: repeat(12, 2.5vw);
+  background-color: var(--background-color);
+}
+
+#room2 {
+  display:grid;
+  background-image: url(ress/floor.png);
+  background-repeat: repeat;
+  background-size: 64px 64px;
+  grid-template-rows: repeat(12, 2.5vw);
+  grid-template-columns: repeat(16, 2.5vw);
+  background-color: var(--background-color);
+}
+
+#room3 {
+  display:grid;
+  align-self: center;
+  background-image: url(ress/floor_stone.jpg);
+  background-repeat: repeat;
+  background-size: 64px 64px;
+  grid-template-rows: repeat(7, 2.5vw);
+  grid-template-columns: repeat(28, 2.5vw);
+  background-color: var(--background-color);
+}
+
+.plan_element {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  color: white;
+  font-size: 16pt;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  z-index: 1;
+}
+
+.chair_round {
+  background-image: url(ress/chair.png);
+}
+
+.chair_square {
+  background-image: url(ress/chair_wood.png);
+}
+
+.table {
+  background-image: url(ress/table.png);
+  color: white;
+  font-weight: bold;
+}
+
+.cell {
+  box-shadow: inset 0px 0px 2px 1px #FFFFFF55;
+}
+
+.cell:hover {
+  cursor:pointer;
+  box-shadow: inset 0px 0px 10px 5px #FFFA;
+}
+
+.cell:hover + .table{
+    text-shadow: #FFF 0px 0px 5px, #FFF 0px 0px 10px, #FFF 0px 0px 15px, #FF2D95 0px 0px 20px, #FF2D95 0px 0px 30px, #FF2D95 0px 0px 40px, #FF2D95 0px 0px 50px, #FF2D95 0px 0px 75px;
+  }
+
+.cell_selected {
+    box-shadow: inset 0px 0px 10px 5px #FF0A;
+}
+
+.cell_selected + .table{
+    text-shadow: #FFA 0px 0px 5px, #FF7 0px 0px 10px, #FF5 0px 0px 15px, #F20 0px 0px 20px, #F20 0px 0px 30px, #F20 0px 0px 40px, #F20 0px 0px 50px, #F20 0px 0px 75px;
+    color: #FF0;
+    font-weight: bold;
+}
+
+.cell_selected:hover {
+  cursor:pointer;
+  box-shadow: inset 0px 0px 10px 5px #FFFA;
+}
+
+.door {
+  background-color: grey;
+}
+
+.door.north{
+    height: 10%;
+    width: 100%;
+    align-self: start;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.door.south{
+    height: 10%;
+    width: 100%;
+    align-self: end;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.door.west{
+    height: 100%;
+    width: 10%;
+    justify-self: end;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.door.east{
+    height: 100%;
+    width: 10%;
+    justify-self: start;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}

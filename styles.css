@@ -1,4 +1,5 @@
 @import "popup.css";
+@import "plan.css";
 
 :root{
   --background-color: cornflowerblue;
@@ -24,6 +25,7 @@ body {
   background-image: url(ress/back.jpg);
   background-repeat: repeat;
   font-family: var(--standard-font);
+  font-size: 14pt;
   user-select: none;
 }
 
@@ -41,101 +43,6 @@ body {
   height: 100%;
   display: flex;
   flex-flow: row;
-}
-
-#layout {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-flow: column;
-  background-color: transparent;
-  scrollbar-width: thin;
-  scrollbar-color: lightblue #FFF;
-}
-
-#nextrooms {
-  display: flex;
-  flex-flow: row;
-  justify-content: center;
-}
-
-.room {
-  border: 2px solid gray;
-}
-
-#room1 {
-  display:grid;
-  background-color: white;
-  grid-template-rows: repeat(12, 2.5vw);
-  grid-template-columns: repeat(12, 2.5vw);
-  background-color: var(--background-color);
-}
-
-#room2 {
-  display:grid;
-  background-color: white;
-  grid-template-rows: repeat(12, 2.5vw);
-  grid-template-columns: repeat(16, 2.5vw);
-  background-color: var(--background-color);
-}
-
-#room3 {
-  display:grid;
-  align-self: center;
-  background-color: white;
-  grid-template-rows: repeat(7, 2.5vw);
-  grid-template-columns: repeat(28, 2.5vw);
-  background-color: var(--background-color);
-}
-
-.plan_element {
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100% 100%;
-  color: white;
-  font-size: 16pt;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  z-index: 1;
-}
-
-.chair_round {
-  background-image: url(ress/chair.png);
-}
-
-.chair_square {
-  background-image: url(ress/chair_wood.png);
-}
-
-.table {
-  background-image: url(ress/table.png);
-}
-
-.cell {
-  box-shadow: inset 0px 0px 2px 1px #FFFFFF55;
-  color: white;
-  font-weight: bold;
-}
-
-.cell:hover {
-  text-shadow: #FFF 0px 0px 5px, #FFF 0px 0px 10px, #FFF 0px 0px 15px, #FF2D95 0px 0px 20px, #FF2D95 0px 0px 30px, #FF2D95 0px 0px 40px, #FF2D95 0px 0px 50px, #FF2D95 0px 0px 75px;
-  cursor:pointer;
-  box-shadow: inset 0px 0px 10px 5px #FFFA;
-}
-
-.cell_selected {
-	text-shadow: #FFA 0px 0px 5px, #FF7 0px 0px 10px, #FF5 0px 0px 15px, #F20 0px 0px 20px, #F20 0px 0px 30px, #F20 0px 0px 40px, #F20 0px 0px 50px, #F20 0px 0px 75px;
-	color: #FF0;
-	box-shadow: inset 0px 0px 10px 5px #FF0A;
-  font-weight: bold;
-}
-
-.cell_selected:hover {
-  cursor:pointer;
-  box-shadow: inset 0px 0px 10px 5px #FFFA;
 }
 
 #Settings {
@@ -169,12 +76,29 @@ body {
   background-color: white;
 }
 
+.FormEntry2 {
+  display: flex;
+  flex-flow: column;
+  width: 90%;
+  gap: 20px;
+  padding: 1rem;
+  background-color: white;
+}
+
 .FormLabel {
   font-family: 'Roboto', sans-serif;
   font-weight: 900;
   font-size: var(--text-size);
   color: var(--font-color);
 }
+
+.FEInner {
+  display:flex;
+  flex-flow: row;
+  gap: 20px;
+  align-items: center;
+}
+
 .button-container {
     display: flex;
     flex-flow: row;
@@ -186,6 +110,7 @@ body {
   width: 100%;
   display: flex;
   flex-flow: column;
+  gap: 5px;
 }
 
 #selected_tables div {
@@ -202,7 +127,6 @@ body {
   width: 50%;
   display: flex;
   flex-flow: row nowrap;
-  font-size: 14pt;
   color: white;
   background: linear-gradient(to right, #1e228d 0%, #5f5cbe 50%, #FFFFFF 100%);
   border-top-left-radius: 20px;
@@ -277,4 +201,10 @@ p {
 .myButton:active {
 	position:relative;
 	top:1px;
+}
+
+hr.solid {
+  width: 100%;
+  border-top: 2px inset rgba(187, 187, 187, 0.5);
+  border-radius: 5px;
 }

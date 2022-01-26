@@ -1,6 +1,6 @@
 var rooms = [];
 
-//Roomname, width, height
+//Roomname, height, width
 var room = ["room1", 12, 12];
 //tableYCoordinate, tableXCoordinate, chairs horizontal or vertical
 var room_tables = [
@@ -11,9 +11,13 @@ var room_tables = [
 				[12, 8,'h'], [12, 11,'h']
 ];
 room.push(room_tables);
+var room_doors = [
+	[4,12], [12,3]
+]
+room.push(room_doors);
 rooms.push(room);
 
-//Roomname, width, height
+//Roomname, height, width
 var room = ["room2", 12, 16];
 //tableYCoordinate, tableXCoordinate, chairs horizontal or vertical
 var room_tables = [
@@ -22,9 +26,13 @@ var room_tables = [
 	[12, 2,'h'], [12, 5,'h'], [12, 11,'h'], [12, 15,'h'], 
 ];
 room.push(room_tables);
+var room_doors = [
+	[4,1], [1,2], [1,11], [12, 8]
+]
+room.push(room_doors);
 rooms.push(room);
 
-//Roomname, width, height
+//Roomname, height, width
 var room = ["room3", 7, 28];
 var room_tables = [
 						  [2,10,'h'], [2,14,'h'], 				[2,23,'h'],
@@ -33,6 +41,10 @@ var room_tables = [
 						  [7,10,'h'], [7,14,'h'], 				[7,23,'h']
 ];
 room.push(room_tables);
+var room_doors = [
+	[1,3], [1, 20]
+]
+room.push(room_doors);
 rooms.push(room);
 
 // menu selector
@@ -64,6 +76,11 @@ var selected_tables = [];
 var selected_chairs = [];
 var number_of_seats = 0;
 
+function initiateWebsite(){
+	generatePlan();
+	var seats = document.getElementById("seats");
+	seats.innerHTML = number_of_seats;
+}
 
 function logPlanState(){
 	console.log("Chairs: "+String(selected_chairs.length)+", Tables: "+String(selected_tables.length));
@@ -125,9 +142,13 @@ function addTisch(value) {
 	Delete.style.cursor = "pointer";
 	Delete.style.justifySelf = "flex-end"
 	Delete.setAttribute("id", "DLIT"+value);
-	Delete.setAttribute("onclick", "deleteEntry('LIT"+value+"')");
+	Delete.setAttribute("onclick", "deleteEntry('LIT"+String(value).padStart(2, "0")+"')");
 	tableEntry.appendChild(Delete);
 	list.appendChild(tableEntry);
+
+	number_of_seats += 2;
+	var seats = document.getElementById("seats");
+	seats.innerHTML = number_of_seats;
 }
 
 function deleteEntry(id){
@@ -140,6 +161,10 @@ function deleteTable(id){
 	document.getElementById(id).remove();
 	var tableNumber = id.substring(3);
 	selected_tables.pop(tableNumber);
+
+	number_of_seats -= 2;
+	var seats = document.getElementById("seats");
+	seats.innerHTML = number_of_seats;
 }
 
 function select(id){
@@ -159,7 +184,7 @@ function selectObject(id){
 		if(!selected_table_ids.includes(id)){
 			selected_table_ids.push(id);
 		}
-	} else if (id.includes("T")) {
+	} else if(id.includes("T")) {
 		object.classList.add('cell');
 		object.classList.remove('cell_selected');
 		if(selected_table_ids.includes(id)){
@@ -169,7 +194,7 @@ function selectObject(id){
 }
 
 function generatePlan(){
-	var tableIds = 0;
+	var tableIds = 1;
 	rooms.forEach(room => {
     	var plan = document.getElementById(room[0]);
 		//Generate all cells
@@ -179,14 +204,9 @@ function generatePlan(){
 			for (let y = 1; y <= room[2]; y++) {
 				row = row+' Z'+String(x).padStart(2, '0')+"_"+String(y).padStart(2, '0');
 				var newCell = document.createElement("div");
-				if(room[0] == "room3"){
-					newCell.style.background = "url(ress/floor_stone.jpg)"
-				} else {
-					newCell.style.background = "url(ress/floor.png)"
-				}
 				newCell.style.backgroundSize = "50px";
 				newCell.style.gridArea = "Z"+String(x).padStart(2, '0')+"_"+String(y).padStart(2, '0');
-				newCell.classList.add('cell');
+				//newCell.classList.add('cell');
 				newCell.setAttribute("id", "Z"+String(x).padStart(2, '0')+"_"+String(y).padStart(2, '0'));
 				plan.appendChild(newCell);
 			}
@@ -196,20 +216,33 @@ function generatePlan(){
 
     //Generate Table and Chair layout
 		room[3].forEach(table => {
-			var tableElement = document.createElement("div");
+			var selector = document.createElement("div");
 			var tableId = "T"+String(tableIds).padStart(2, '0');
+			selector.setAttribute("id", tableId);
+			selector.setAttribute("class", "cell");
+			selector.setAttribute("onclick", "select('"+tableId+"')");
+			selector.style.zIndex = 3;
+			if(table[2] == "v"){
+				selector.style.gridArea = String(table[0]-1)+" / "+String(table[1])+" / span 3 / span 1";
+			} else {
+				selector.style.gridArea = String(table[0])+" / "+String(table[1]-1)+" / span 1 / span 3";
+			}
+			plan.appendChild(selector);
+			
+			var tableElement = document.createElement("div");
+			var tableId = "IT"+String(tableIds).padStart(2, '0');
 			tableElement.setAttribute("id", tableId);
-			tableElement.setAttribute("class", "cell plan_element table");
-			tableElement.setAttribute("onclick", "select('"+tableId+"')");
+			tableElement.setAttribute("class", "plan_element table");
 			tableElement.style.gridArea = "Z"+String(table[0]).padStart(2, '0')+"_"+String(table[1]).padStart(2, '0');
-			tableElement.innerHTML = String(tableIds++).padStart(2, '0');
+			tableElement.innerHTML = String(tableIds).padStart(2, '0');
 			plan.appendChild(tableElement);
+			tableIds++
 
 			for(var index = 1; index <= 2; index++){
 				var chairId = "C"+tableId.substring(1)+"_"+String(index).padStart(2, '0');
 				var chairElement = document.createElement("div");
 				chairElement.setAttribute("id", chairId);
-				chairElement.setAttribute("class", "cell plan_element chair_square");
+				chairElement.setAttribute("class", "plan_element chair_square");
 				if(table[2] == "v"){
 					if(index == 1){
 						chairElement.style.gridArea = "Z"+String(table[0]-1).padStart(2, '0')+"_"+String(table[1]).padStart(2, '0');
@@ -228,6 +261,26 @@ function generatePlan(){
 				}
 				plan.appendChild(chairElement);
 			}
+
+			
+		});
+
+		room[4].forEach(door => {
+			var doorElement = document.createElement("div");
+			doorElement.setAttribute("class", "door");
+			doorElement.style.gridArea = "Z"+String(door[0]).padStart(2, '0')+"_"+String(door[1]).padStart(2, '0');
+			doorElement.style.zIndex = 1;
+			if(door[1] == room[2]) {//west
+				doorElement.classList.add("west");
+			} else if(door[1] == 1){//east
+				doorElement.classList.add("east");
+			} else if(door[0] == room[1]){//south
+				doorElement.classList.add("south");
+			} else {//north
+				doorElement.classList.add("north");
+			}
+			
+			plan.appendChild(doorElement);
 		});
 	});
 }
@@ -325,3 +378,4 @@ function relativeMenu(id) {
 function sendData() {
 	localStorage.setItem("price",foodprice);
 }
+
