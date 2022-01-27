@@ -10,75 +10,87 @@
     </head>
 
     <body onload="initiateWebsite()">
-        <h1 id="sitename">Webbed Cream!</h1>
-        <div id="flexcontainer">
-            <div id="layout">
-                <div id="nextrooms">
-                    <div id="room1" class="room"></div>
-                    <div id="room2" class="room"></div>
-                </div>
-                <div id="room3" class="room">
-                </div>
+        <div class="flexcontainer">
+            <div>
+                <h1 id="sitename">Webbed Cream!</h1>
             </div>
-            <div id="Settings">
-                <img id="collapse" src="ress/right-arrow.png" onclick="collapseSettings()"/>
-                <form id="SettingForm" method="POST" action="userData/userInput.html">
-                    <div class="FormEntry2 card card-1">
-                        <div class="FEInner">
-                            <label class="FormLabel">Tischnummern: </label>
-                            <input id="tableText" type="text"/>
-                            <button class="myButton" id="addTable" onclick="addTableList()" type="button">add</button>
-                        </div>
-                        <div id="selected_tables">
-                        </div>
-                        <hr class="solid">
-                        <div class="FEInner">
-                            <label class="FormLabel">Anzahl Sitzplätze: </label>
-                            <p id="seats"></p>
-                        </div>
-                        
+            
+            <div id="flexcontainer">
+                <div id="layout">
+                    <div id="nextrooms">
+                        <div id="room1" class="room"></div>
+                        <div id="room2" class="room"></div>
                     </div>
-                    <div class="FormEntry card card-1">
-                        <label class="FormLabel">Besonderheiten:</label>
-                        <div class="button-container">
-                            <button class="myButton" onClick="chooseWheelChair(this)" type="button">Rollstuhl</button>
-                            <div class="icon-container" id="wheel">
-                                <img src="./ress/wheel-chair.png" alt='Wheelchair Art' class="icon">
+                    <div id="room3" class="room">
+                    </div>
+                </div>
+                <div id="Settings">
+                    <img id="collapse" src="ress/right-arrow.png" onclick="collapseSettings()"/>
+                    <form id="SettingForm" method="POST" action="userData/userInput.html">
+                        <div class="FormEntry2 card card-1">
+                            <div class="FEInner">
+                                <div class="item">
+                                    <label class="FormLabel">Tischnummern: </label>
+                                </div>
+                                <div class="item">
+                                    <input id="tableText" type="number" class="input-number" min="0" max="54"/>
+                                </div>
+                                <div class="item">
+                                    <button class="myButton" id="addTable" onclick="addTableList()" type="button">add</button>
+                                </div>
+                            </div>
+                            <div id="selected_tables">
+                            </div>
+                            <hr class="solid">
+                            <div class="FEInner">
+                                <label class="FormLabel">Anzahl Sitzplätze: </label>
+                                <p id="seats"></p>
                             </div>
                             
-                            <button class="myButton" onClick="chooseHighChair(this)" type="button">Babystuhl</button>
-                            <div class="icon-container" id="high-chair">
-                                <img src="./ress/baby-chair.png" alt='high-chair Art' class="icon">
+                        </div>
+                        <div class="FormEntry card card-1">
+                            <label class="FormLabel">Besonderheiten:</label>
+                            <div class="button-container">
+                                <button class="myButton" onClick="chooseWheelChair(this)" type="button">Rollstuhl</button>
+                                <div class="icon-container" id="wheel">
+                                    <img src="./ress/wheel-chair.png" alt='Wheelchair Art' class="icon">
+                                </div>
+                                
+                                <button class="myButton" onClick="chooseHighChair(this)" type="button">Babystuhl</button>
+                                <div class="icon-container" id="high-chair">
+                                    <img src="./ress/baby-chair.png" alt='high-chair Art' class="icon">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="FormEntry card card-1">
-                        <label class="FormLabel">Zeit:</label>
-                        <input id="time" type="datetime-local"/>
-                    </div>
-                    <div class="FormEntry card card-1 button-container">
-                        <div>
-                            <button class="myButton" id="meals" onclick="showFood()" type="button">Gericht auswählen</button>
-                            <label id="FoodPrice2">Gesamtpreis: 0€</label>
+                        <div class="FormEntry card card-1">
+                            <label class="FormLabel">Zeit:</label>
+                            <input id="time" type="datetime-local" min=""/>
                         </div>
-                    </div>
-                    <div class="FormEntry card card-1">
-                        <div>
-                            <button id="foodListShowButton" type="button" class="myButton small" onclick="showFoodList(this)">+</button>
-                            <label id="foodListButton">Essens Auswahl anzeigen</label>
+                        <div class="FormEntry card card-1 button-container">
+                            <div>
+                                <button class="myButton" id="meals" onclick="showFood()" type="button">Gericht auswählen</button>
+                                <label id="FoodPrice2">Gesamtpreis: 0€</label>
+                            </div>
+                        </div>
+                        <div class="FormEntry card card-1">
+                            <div>
+                                <button id="foodListShowButton" type="button" class="myButton small" onclick="showFoodList(this)">+</button>
+                                <label id="foodListButton">Essens Auswahl anzeigen</label>
+                            </div>
+                            <div>
+                                <label id="food-list"></label>
+                            </div>
+                            
                         </div>
                         <div>
-                            <label id="food-list"></label>
+                            <button class="myButton" id="save" onclick="sendData()">Weiter</button>
                         </div>
-                        
-                    </div>
-                    <div>
-                        <button class="myButton" id="save" onclick="sendData()">Weiter</button>
-                    </div>
 
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
+        
 
         <div id="food-container" class="popup-container">
             <div class="popup">

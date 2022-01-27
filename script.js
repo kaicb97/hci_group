@@ -82,6 +82,20 @@ function initiateWebsite(){
 	generatePlan();
 	var seats = document.getElementById("seats");
 	seats.innerHTML = number_of_seats;
+	setTime();
+}
+
+function setTime(){
+	let currentDate = new Date();
+	let cDay = String(currentDate.getDate()).padStart(2,0);
+	let cMonth = String((currentDate.getMonth() + 1)).padStart(2,0);
+	let cYear = currentDate.getFullYear();
+	var datetime = cYear + "-" + cMonth + "-" + cDay;
+	let time = String(currentDate.getHours()).padStart(2,0) + ":" + String(currentDate.getMinutes()).padStart(2,0);
+	datetime += "T"+time;
+	console.log(datetime);
+	document.getElementById("time").min = datetime;
+
 }
 
 function logPlanState(){
@@ -323,7 +337,7 @@ function displayMenuData() {
 
 function hideMenu(){
 	var foodContainer = document.getElementById("food-container");
-	document.getElementById("FoodPrice2").innerHTML = "Gesamtpreis: " + foodprice + "€";
+	document.getElementById("FoodPrice2").innerHTML = "Gesamtpreis: " + foodprice;
 	foodContainer.classList.toggle("show");
 }
 
