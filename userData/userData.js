@@ -26,7 +26,6 @@ function send() {
 
 function goBack(){
     sessionStorage.setItem("price") = price;
-    sessionStorage.setItem("foodList") = sessionStorage.getItem("foodList");
-
+    sessionStorage.setItem("data") = sessionStorage.setItem("data");
     window.location.href = "../index.html";
 }

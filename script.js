@@ -38,8 +38,8 @@ function initiateWebsite(){
 }
 
 function getOldData(){
-	var oldPrice = sessionStorage.getItem("price");
-	var oldFoodList = JSON.parse(sessionStorage.getItem("foodList"));
+	var oldPrice = JSON.parse(sessionStorage.getItem("data"))["price"];
+	var oldFoodList = JSON.parse(sessionStorage.getItem("data"))["choosenFood"];
 	if(oldPrice != null){
 		foodprice = oldPrice;
 	}
