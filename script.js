@@ -22,103 +22,53 @@ var menu = [
 var currentMenu = 0;
 var choosenFood = {}
 
-
-//TableID: Number Chairs
-var tables = {1: 4, 2: 4, 3: 4, 4: 2, 5: 4, 6: 4, 7: 4, 8: 2, 9: 2};
+var selected_table_ids = [];
 var selected_tables = [];
 var selected_chairs = [];
 var number_of_seats = 0;
+var wheelchair = false;
+var babychair = false;
 
-function logPlanState(){
-	console.log("Chairs: "+String(selected_chairs.length)+", Tables: "+String(selected_tables.length));
-	if(selected_chairs.length > 0){
-		console.log(selected_chairs);
+function initiateWebsite(){
+	generatePlan();
+	var seats = document.getElementById("seats");
+	seats.innerHTML = number_of_seats;
+	setTime();
+	getOldData();
+}
+
+function getOldData(){
+	var oldPrice = sessionStorage.getItem("price");
+	var oldFoodList = JSON.parse(sessionStorage.getItem("foodList"));
+	if(oldPrice != null){
+		foodprice = oldPrice;
 	}
-	if(selected_tables.length > 0){
-		console.log(selected_tables);
+	if (oldFoodList != null) {
+		choosenFood = oldFoodList;
+		console.log(choosenFood);
 	}
-}
 
-function incrementChairs(){
-	number_of_seats +=1;
-	document.getElementById("chairs").value = number_of_seats;
-}
-
-function decrementChairs(){
-	number_of_seats -=1;
-	document.getElementById("chairs").value = number_of_seats;
-}
-
-function selectObject(){
-	var ObjectID = event.target.getAttribute("id");
-	if(event.target.classList.contains('cell')){
-		event.target.classList.add('cell_selected');
-		event.target.classList.remove('cell');
-		if(ObjectID.includes("C")){
-			incrementChairs();
-			selected_chairs.push(ObjectID);
-		} else if(ObjectID.includes("T")) {
-			selected_tables.push(ObjectID);
-		}
-	} else {
-		event.target.classList.add('cell');
-		event.target.classList.remove('cell_selected');
-		if(ObjectID.includes("C")){
-			if(selected_chairs.includes(ObjectID)){
-				decrementChairs();
-				selected_chairs.pop(ObjectID);
-			}
-		} else if(ObjectID.includes("T")) {
-			if(selected_tables.includes(ObjectID)){
-				selected_tables.pop(ObjectID);
-			}
-		}
-	}
-	logPlanState();
-}
-
-function generatePlan(){
-    var plan = document.getElementById("plan");
 	
-	//Generate Tables Layout
-	for(var table in tables) {
-		var tableElement = document.createElement("div");
-		var tableId = "T"+String(table).padStart(2, '0');
-		tableElement.setAttribute("id", tableId);
-		tableElement.setAttribute("class", "cell table");
-		tableElement.setAttribute("onClick", "selectObject()");
-		tableElement.innerHTML = String(table).padStart(2, '0');
-		plan.appendChild(tableElement);
-		
-		for(var index = 1; index <= tables[table]; index++){
-			var chairId = "C"+tableId.substring(1)+"_"+String(index).padStart(2, '0');
-			var chairElement = document.createElement("div");
-			chairElement.setAttribute("id", chairId);
-			chairElement.setAttribute("class", "cell chair");
-			chairElement.setAttribute("onClick", "selectObject()");
-			chairElement.innerHTML = String(index).padStart(2, '0');
-			plan.appendChild(chairElement);
-		}
+	document.getElementById("FoodPrice2").innerHTML = "Gesamtpreis: " + foodprice;
+	if (document.getElementById("foodListShowButton").innerHTML == "-") {
+		getFoodList();
 	}
-	
-	//Generate all cells
-    plan.style.gridTemplateAreas = ""
-    for (let x = 1; x <= 12; x++) {
-        var row = '"';
-        for (let y = 1; y <= 12; y++) {
-            row = row+' Z'+String(x).padStart(2, '0')+"_"+String(y).padStart(2, '0');
-            var newCell = document.createElement("div");
-            newCell.style.background = "url(ress/floor.png)"
-            newCell.style.gridArea = "Z"+String(x).padStart(2, '0')+"_"+String(y).padStart(2, '0');
-            newCell.classList.add('cell');
-            newCell.setAttribute("id", "Z"+String(x).padStart(2, '0')+"_"+String(y).padStart(2, '0'));
-            plan.appendChild(newCell);
-        }
-        var row = row+'"\n';
-        plan.style.gridTemplateAreas = plan.style.gridTemplateAreas+row;
-    }
+}
+
+
+function setTime(){
+	let currentDate = new Date();
+	let cDay = String(currentDate.getDate()).padStart(2,0);
+	let cMonth = String((currentDate.getMonth() + 1)).padStart(2,0);
+	let cYear = currentDate.getFullYear();
+	var datetime = cYear + "-" + cMonth + "-" + cDay;
+	let time = String(currentDate.getHours()).padStart(2,0) + ":" + String(currentDate.getMinutes()).padStart(2,0);
+	datetime += "T"+time;
+	console.log(datetime);
+	document.getElementById("time").min = datetime;
 
 }
+
 
 function collapseSettings(){
 	if(document.getElementById("Settings").style.width != "50px"){
@@ -127,7 +77,7 @@ function collapseSettings(){
 		document.getElementById("SettingForm").style.display = "none";
 
 	} else {
-		document.getElementById("Settings").style.width = "20%";
+		document.getElementById("Settings").style.width = "25vw";
 		document.getElementById("collapse").style.transform = "none";
 		document.getElementById("SettingForm").style.display = "flex";
 	}	
@@ -159,16 +109,32 @@ function toggle_popup() {
     foodContainer.classList.toggle('show');
 }
 
+function hideMenu(){
+	var foodContainer = document.getElementById("food-container");
+	document.getElementById("FoodPrice2").innerHTML = "Gesamtpreis: " + foodprice;
+	foodContainer.classList.toggle("show");
+	console.log(choosenFood);
+}
+
 function choose(button){
     button.classList.toggle("buttonShow");
     return false;
 }
 
+function chooseWheelChair(button){
+	document.getElementById("wheel").classList.toggle("show");
+	button.classList.toggle("clicked");
+}
+
+function chooseHighChair(button){
+	document.getElementById("high-chair").classList.toggle("show");
+	button.classList.toggle("clicked");
+}
+
 var foodprice = 0; 
 
 function calcFoodPrice(){
-    var foodprice = 0
-
+    foodprice = 0
     for (var key in choosenFood) {
         foodprice += choosenFood[key] * menu[key].price;
     }
@@ -181,6 +147,10 @@ function calcFoodPrice(){
         document.getElementById("food-buy").innerHTML = "Bestellen!"
 
     document.getElementById("food-price-overall").innerHTML = "Gesamt: " + foodprice;
+
+	if (document.getElementById("foodListShowButton").innerHTML == "-") {
+		getFoodList();
+	}
 }
 
 function incrementFood(count) {
@@ -195,6 +165,7 @@ function incrementFood(count) {
     }
 
     calcFoodPrice();
+	console.log(currentMenu);
 	return false;
 }
 
@@ -208,8 +179,6 @@ function relativeMenu(id) {
 
     displayMenuData();
 }
-<<<<<<< Updated upstream
-=======
 
 function sendData() {
 	var data = {
@@ -223,9 +192,8 @@ function sendData() {
         "price": foodprice,
     }
 
-    localStorage.setItem("data",JSON.stringify(data));
+    sessionStorage.setItem("data",JSON.stringify(data));
 }
-
 
 function getFoodList(){
 	var text = "";
@@ -252,5 +220,3 @@ function showFoodList(button){
 	
 
 }
-
->>>>>>> Stashed changes

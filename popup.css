@@ -28,6 +28,7 @@
 #popup-img {
     width: 80vw;
     height: 80vh;
+    object-fit: cover;
 }
 
 .top-centered {
@@ -58,6 +59,12 @@
     position: absolute;
     top: 8px;
     right: 8px;
+}
+
+.bottom-left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
 
 .food-headline {
@@ -96,5 +103,27 @@
 }
 
 #food-buy {
-    width: 100px;
+    width: 150px;
+}
+
+.myMenuButton {
+    box-shadow:inset 0px -18px 2px -12px #ffffff;
+    background-color:var(--color1);
+    display:inline-block;
+    border: none;
+    cursor:pointer;
+    color:#dadbf0;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:9px 23px;
+    text-decoration:none;
+    text-shadow:0px -1px 0px var(--color1);
+    text-align: center;
+}
+.myMenuButton:hover {
+    background-color:#a8a1e7;
+}
+.myMenuButton:active {
+    background-color:#979797;
 }

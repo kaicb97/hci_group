@@ -5,68 +5,101 @@
         <link rel="stylesheet" href="./styles.css">
         <script src="db/db.js"></script> 
         <script src="./script.js"></script> 
-
+        <script src="./planscript.js"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,900&display=swap" rel="stylesheet">
     </head>
 
-    <body onload="generatePlan()">
-        <h1 id="sitename">Webbed Cream!</h1>
-        <div id="flexcontainer">
-            <div id="layout">
-                <h2>Tischreservierung:</h2>
-                <div id="plan">
+    <body onload="initiateWebsite()">
+        <div class="flexcontainer">
+            <div>
+                <h1 id="sitename">Webbed Cream!</h1>
+            </div>
+            
+            <div id="flexcontainer">
+                <div id="layout">
+                    <div id="nextrooms">
+                        <div id="room1" class="room"></div>
+                        <div id="room2" class="room"></div>
+                    </div>
+                    <div id="room3" class="room">
+                    </div>
+                </div>
+                <div id="Settings">
+                    <img id="collapse" src="ress/right-arrow.png" onclick="collapseSettings()"/>
+                    <form id="SettingForm" method="POST" action="userData/userInput.html">
+                        <div class="FormEntry2 card card-1">
+                            <div class="FEInner">
+                                <div class="item">
+                                    <label class="FormLabel">Tischnummern: </label>
+                                </div>
+                                <div class="item">
+                                    <input id="tableText" type="number" class="input-number" min="0" max="54"/>
+                                </div>
+                                <div class="item">
+                                    <button class="myButton" id="addTable" onclick="addTableList()" type="button">add</button>
+                                </div>
+                            </div>
+                            <div id="selected_tables">
+                            </div>
+                            <hr class="solid">
+                            <div class="FEInner">
+                                <label class="FormLabel">Anzahl Sitzplätze: </label>
+                                <p id="seats"></p>
+                            </div>
+                            
+                        </div>
+                        <div class="FormEntry card card-1">
+                            <label class="FormLabel">Besonderheiten:</label>
+                            <div class="button-container">
+                                <button class="myButton" onClick="chooseWheelChair(this)" type="button">Rollstuhl</button>
+                                <div class="icon-container" id="wheel">
+                                    <img src="./ress/wheel-chair.png" alt='Wheelchair Art' class="icon">
+                                </div>
+                                
+                                <button class="myButton" onClick="chooseHighChair(this)" type="button">Babystuhl</button>
+                                <div class="icon-container" id="high-chair">
+                                    <img src="./ress/baby-chair.png" alt='high-chair Art' class="icon">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="FormEntry card card-1">
+                            <label class="FormLabel">Zeit:</label>
+                            <input id="time" type="datetime-local" min=""/>
+                        </div>
+                        <div class="FormEntry card card-1 button-container">
+                            <div>
+                                <button class="myButton" id="meals" onclick="showFood()" type="button">Gericht auswählen</button>
+                                <label id="FoodPrice2">Gesamtpreis: 0€</label>
+                            </div>
+                        </div>
+                        <div class="FormEntry card card-1">
+                            <div>
+                                <button id="foodListShowButton" type="button" class="myButton small" onclick="showFoodList(this)">+</button>
+                                <label id="foodListButton">Essens Auswahl anzeigen</label>
+                            </div>
+                            <div>
+                                <label id="food-list"></label>
+                            </div>
+                            
+                        </div>
+                        <div>
+                            <button class="myButton" id="save" onclick="sendData()">Weiter</button>
+                        </div>
+
+                    </form>
                 </div>
             </div>
-            <div id="Settings">
-                <img id="collapse" src="ress/right-arrow.png" onclick="collapseSettings()"/>
-                <form id="SettingForm">
-                    <div class="FormEntry card card-1">
-                        <label class="FormLabel">Anzahl Stühle: </label>
-                        <input id="chairs" type="number"/>
-                    </div>
-                    <div class="FormEntry card card-1">
-                        <label class="FormLabel">Tischnummern: </label>
-                        <div class="checkboxes">
-                            <input id="cb1" type="checkbox"/>
-                            <input id="cb2" type="checkbox"/>
-                            <input id="cb3" type="checkbox"/>
-                            <input id="cb4" type="checkbox"/>
-                            <input id="cb5" type="checkbox"/>
-                            <input id="cb6" type="checkbox"/>
-                            <input id="cb7" type="checkbox"/>
-                            <input id="cb8" type="checkbox"/>
-                            <input id="cb9" type="checkbox"/>
-                            <input id="cb10" type="checkbox"/>
-                        </div>
-                    </div>
-                    <div class="FormEntry card card-1">
-                        <label class="FormLabel">Besonderheiten:</label>
-                        <div class="button-container">
-                            <button onClick="return choose(this)">Rollstuhl</button>
-                            <button onClick="return choose(this)">Babystuhl</button>
-                        </div>
-                    </div>
-                    <div class="FormEntry card card-1">
-                        <label class="FormLabel">Zeit:</label>
-                        <input id="time" type="datetime-local"/>
-                    </div>
-                    <div class="FormEntry card card-1 button-container">
-                        <div>
-                            <button id="meals" onclick="return showFood()">Gericht auswählen</button>
-                            <label>Preis: </label>
-                            <input id="FoodPrice2" type="text" readonly class="numberInput full">
-                        </div>
-                        <button id="save">Speichern</button>
-                    </div>
-                </form>
-            </div>
         </div>
+        
 
         <div id="food-container" class="popup-container">
             <div class="popup">
                 <img id="popup-img" class="background-img" alt="Food Image">
+                <div class="bottom-left">
+                    <button class="myMenuButton" type=button onClick="hideMenu()">Exit</button>
+                </div>
                     
                 <button class="top-left" onclick="toggle_popup()">x</button>
                 <div class="arrow left-center">
@@ -86,14 +119,11 @@
 
                 
                 <div class="buttons bottom-centered">
-                    <button id="food-sub" onclick="incrementFood(-1)">-</button>
-                    <button id="food-buy">Vorort bestellen</button>
-                    <button id="food-add" onclick="incrementFood(1)">+</button>
+                    <button class="myMenuButton" id="food-sub" onclick="incrementFood(-1)">-</button>
+                    <button class="myMenuButton" id="food-buy" type=button onClick="hideMenu()">Vorort bestellen!</button>
+                    <button class="myMenuButton" id="food-add" onclick="incrementFood(1)">+</button>
                 </div>
             </div>
-        </div>
-        <div class="impressum" hidden>
-            <a href="https://www.flaticon.com/free-icons/next" title="next icons">Next icons created by Roundicons - Flaticon</a>
         </div>
     </body>
 </html>
