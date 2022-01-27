@@ -181,6 +181,7 @@ function relativeMenu(id) {
 }
 
 function sendData() {
+    console.log(document.getElementById("time").value);
 	var data = {
         "choosenFood": choosenFood, 
         "selected_table_ids": selected_table_ids,
@@ -190,8 +191,10 @@ function sendData() {
         "wheelchair": wheelchair,
         "babychair": babychair,
         "price": foodprice,
+        "date": document.getElementById("time").value,
     }
 
+    console.log(data);
     sessionStorage.setItem("data",JSON.stringify(data));
 }
 
@@ -216,7 +219,4 @@ function showFoodList(button){
 		document.getElementById("foodListButton").innerHTML = "Essens Auswahl anzeigen";
 		document.getElementById("food-list").innerHTML = "";
 	}
-
-	
-
 }

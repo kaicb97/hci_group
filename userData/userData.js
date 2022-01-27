@@ -13,7 +13,10 @@ function send() {
     }else if(document.getElementById("Email").value == "") {
         alert("Bitte geben sie ihre Email an");
     }else{
-        appendData("orders", {"data":[JSON.parse(localStorage.getItem("data"))]});            
+        var data = JSON.parse(sessionStorage.getItem("data"));
+        data[0]["firstname"] = document.getElementById("FirstName").value;
+        data[0]["lastname"] = document.getElementById("LastName").value;
+        appendData("orders", {"data":[data]});            
 
         alert("Vielen Dank für ihre Reservierung! Überprüfen sie ihre Mails");
         sessionStorage.clear();
@@ -24,4 +27,6 @@ function send() {
 function goBack(){
     sessionStorage.setItem("price") = price;
     sessionStorage.setItem("foodList") = sessionStorage.getItem("foodList");
+
+    window.location.href = "../index.html";
 }
