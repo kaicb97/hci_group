@@ -1,7 +1,9 @@
 var numberOfPeople = 3;
+var price = 0;
 
 function init() {
-    document.getElementById("preis").innerHTML = "<h1>"+localStorage.getItem("price")+"Euro</h1>";
+    price = sessionStorage.getItem("price");
+    document.getElementById("preis").innerHTML = "<h1>"+ price +"</h1>";
 }
 
 function send() {
@@ -11,6 +13,12 @@ function send() {
         alert("Bitte geben sie ihre Email an");
     }else{
         alert("Vielen Dank für ihre Reservierung! Überprüfen sie ihre Mails");
+        sessionStorage.clear();
     }
     
+}
+
+function goBack(){
+    sessionStorage.setItem("price") = price;
+    sessionStorage.setItem("foodList") = sessionStorage.getItem("foodList");
 }
