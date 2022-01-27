@@ -2,21 +2,51 @@
 var menu = [
         {
             "id": 0,
+            "name": "Salat",
+            "img": "https://image.essen-und-trinken.de/11950070/t/L8/v10/w1440/r1/-/gemischter-salat-mit-tomaten-und-pecannuessen-jpg--63869-.jpg",
+            "price": 5.99
+        }, 
+        {
+            "id": 1,
             "name": "Schnitzel",
             "img": "https://images.unsplash.com/photo-1599921841143-819065a55cc6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1631&q=80",
             "price": 6.99
         },
         {
-            "id": 1,
+            "id": 2,
             "name": "Burger",
             "img": "http://www.gourmetburger.ch/wp-content/uploads/2018/02/gourmetburger_gallery13.jpg",
             "price": 10.99
         },
         {
-            "id": 2,
+            "id": 3,
             "name": "Burger Vegan",
             "img": "https://www.zauberdergewuerze.de/magazin/wp-content/uploads/2021/02/burger_istock-1248306530.jpg",
             "price": 17.99
+        },
+        {
+            "id": 4,
+            "name": "Gemischtes Eis mit Obst",
+            "img": "https://thumbs.dreamstime.com/z/eiscreme-mit-frucht-nachtisch-72961927.jpg",
+            "price": 3.99
+        },
+        {
+            "id": 5,
+            "name": "Crepes",
+            "img": "https://cdn.gutekueche.de/upload/rezept/9/1600x1200_crepes-teig.jpg",
+            "price": 6.99
+        },
+        {
+            "id": 6,
+            "name": "Vanille-Pudding mit Erdbeersoße",
+            "img": "https://www.oetker.at/Recipe/Recipes/oetker.at/at-de/dessert/image-thumb__9881__RecipeDetailsLightBox/vanille-pudding-mit-erdbeersosse.jpg",
+            "price": 5
+        },
+        {
+            "id": 7,
+            "name": "Käsekuchen (Stück)",
+            "img": "https://www.springlane.de/magazin/wp-content/uploads/2019/04/Skyr-Kuchen_87185-1.jpg",
+            "price": 2.49
         }
 ];
 var currentMenu = 0;
@@ -102,11 +132,6 @@ function displayMenuData() {
     prod_price.innerHTML = menu[currentMenu].price;
 
     foodContainer.classList.add("show");
-}
-
-function toggle_popup() {
-    var foodContainer = document.getElementById("food-container");
-    foodContainer.classList.toggle('show');
 }
 
 function hideMenu(){

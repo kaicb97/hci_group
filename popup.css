@@ -40,6 +40,10 @@
 
 .bottom-centered {
     position: absolute;
+    display: flex;
+    flex-flow: row;
+    align-items: flex-end;
+    gap: 10px;
     bottom: 16px;
     left: 50%;
     transform: translate(-50%, 0%);
