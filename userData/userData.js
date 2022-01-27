@@ -14,8 +14,6 @@ function send() {
         alert("Bitte geben sie ihre Email an");
     }else{
         var data = JSON.parse(sessionStorage.getItem("data"));
-        data[0]["firstname"] = document.getElementById("FirstName").value;
-        data[0]["lastname"] = document.getElementById("LastName").value;
         appendData("orders", {"data":[data]});            
 
         alert("Vielen Dank für ihre Reservierung! Überprüfen sie ihre Mails");
