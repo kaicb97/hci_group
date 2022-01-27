@@ -3,7 +3,7 @@ var numberOfPeople = 3;
 var price = 0;
 
 function init() {
-    price = JSON.parse(sessionStorage.getItem("data"))["price"]);
+    price = JSON.parse(sessionStorage.getItem("data"))["price"];
     document.getElementById("preis").innerHTML = "<h1>"+ price +"</h1>";
 }
 
