@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../styles.css">
+        <link rel="stylesheet" href="./userData.css">
+        <script src="../db/database.js"></script> 
+        <script src="./userData.js"></script> 
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,900&display=swap" rel="stylesheet">
+    </head>
+    <body onload="init()">
+        <h1 id="sitename">Webbed Cream!</h1>
+        <div class="mainContainer">
+            <div class="sideBox">
+                <div>
+                    <img src="..//ress/werbung.jpg">
+                </div>
+            </div>
+            <div class="middleBlock">
+                <form id="finalForm">
+                    <div class="formBG">
+                        <div class="form-container">
+                            <div class="">
+                                <label><h1>Persönliche Daten</h1></label>
+                            </div>
+                            <div class="row-container">
+                                
+                                <div class="label-container">
+                                    <label for="FirstName">First Name*:</label>
+                                </div>
+                                <div class="input-container">
+                                    <input name="FirstName" id="FirstName" type="text" maxlength="60" style="width:100%">
+                                </div>
+                            </div>
+                            <div class="row-container">
+                                
+                                <div class="label-container">
+                                    <label for="LastName">Last Name*:</label>
+                                </div>
+                                <div class="input-container">
+                                    <input name="LastName" id="LastName" type="text" maxlength="60" style="width:100%">
+                                </div>
+                            </div>
+                            <div class="row-container">
+                                <div class="label-container">
+                                    <label for="Email">E-Mail*:</label>
+                                </div>
+                                <div class="input-container">
+                                    <input name="Email" id="Email" type="text" maxlength="60" style="width:100%">
+                                </div>
+                            </div>
+                            <div class="row-container">
+                                <h1>Preis:</h1><label id="preis"></label>
+                            </div>
+                            <div class="button-centered">
+                                <div>
+                                    <a href="../index.html">
+                                        <button class="myButton noTouch" type="button" onclick="">Zurück</button>
+                                    </a>
+                                </div>
+                                <div>
+                                    <button class="myButton noTouch" type="button" onclick="send()">Bezahlen</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="sideBox">
+                <div>
+                    <img src="..//ress/werbung.jpg">
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

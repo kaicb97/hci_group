@@ -208,3 +208,49 @@ function relativeMenu(id) {
 
     displayMenuData();
 }
+<<<<<<< Updated upstream
+=======
+
+function sendData() {
+	var data = {
+        "choosenFood": choosenFood, 
+        "selected_table_ids": selected_table_ids,
+        "selected_tables": selected_tables,
+        "selected_chairs": selected_chairs,
+        "number_of_seats": number_of_seats,
+        "wheelchair": wheelchair,
+        "babychair": babychair,
+        "price": foodprice,
+    }
+
+    localStorage.setItem("data",JSON.stringify(data));
+}
+
+
+function getFoodList(){
+	var text = "";
+    for (var key in choosenFood) {
+		var currentFoodPrice = choosenFood[key] * menu[key].price;
+		text += choosenFood[key] + "x " + menu[key].name + ": " + (currentFoodPrice*100)/100 + "€" + "<br>";
+    }
+	document.getElementById("food-list").innerHTML = text;
+}
+
+function showFoodList(button){
+	if(button.innerHTML == "+"){
+		button.innerHTML = "-";
+		button.style.padding = "1px 10px";
+		document.getElementById("foodListButton").innerHTML = "Essens Auswahl verbergen";
+		getFoodList();
+	}else{
+		button.innerHTML = "+";
+		button.style.padding = "1px 7px";
+		document.getElementById("foodListButton").innerHTML = "Essens Auswahl anzeigen";
+		document.getElementById("food-list").innerHTML = "";
+	}
+
+	
+
+}
+
+>>>>>>> Stashed changes
